@@ -83,7 +83,7 @@
 <link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Jekyll, NexT" />
+  <meta name="keywords" content="Dos," />
 
 
 
@@ -111,17 +111,17 @@
 
 
 
-<meta name="description" content="个人笔记">
-<meta name="keywords" content="Jekyll, NexT">
-<meta property="og:type" content="website">
-<meta property="og:title" content="悠悠然">
-<meta property="og:url" content="http://localhost:4000/tags/">
+<meta name="description" content="在Win7中开启端口转发功能">
+<meta name="keywords" content="Dos">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows端口转发">
+<meta property="og:url" content="http://localhost:4000/windows/2018/12/10/windows%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/">
 <meta property="og:site_name" content="悠悠然">
-<meta property="og:description" content="个人笔记">
+<meta property="og:description" content="在Win7中开启端口转发功能">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="悠悠然">
-<meta name="twitter:description" content="个人笔记">
+<meta name="twitter:title" content="Windows端口转发">
+<meta name="twitter:description" content="在Win7中开启端口转发功能">
 
 
 <script type="text/javascript" id="hexo.configurations">
@@ -154,7 +154,7 @@
 
 
 
-  <title>              标签 | 悠悠然      </title>
+  <title>Windows端口转发 | 悠悠然</title>
   
 
 
@@ -314,42 +314,232 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
+
 <div id="posts" class="posts-expand">
-<header class="post-header">
+  
+  
 
-	<h1 class="post-title" itemprop="name headline">
-    
-      标签
-    
-  </h1>
-
-
-
-</header>
+  
 
   
   
-    <div class="tag-cloud">
-      <div class="tag-cloud-title">
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/windows/2018/12/10/windows%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jsf">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="悠悠然">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
           
-            目前共计 3 个标签
           
-      </div>
-      <div class="tag-cloud-tags">
+            Windows端口转发
+          
+        </h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-10T00:00:00+08:00">
+                2018-12-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/Windows" itemprop="url" rel="index">
+                    <span itemprop="name">Windows</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            
+                <div class="post-description">
+                    在Win7中开启端口转发功能
+                </div>
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
         
-        
-        
-        
-        
-        
+  
+  
 
 
 
-        <a href="/tag/#/C" style="font-size: 12.0px;color: rgb(204,204,204)">C</a> <a href="/tag/#/Dos" style="font-size: 30.0px;color: rgb(17,17,17)">Dos</a> <a href="/tag/#/sql" style="font-size: 12.0px;color: rgb(204,204,204)">sql</a>
-      </div>
+
+
+
+
+
+
+
+
+
+  <div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> 使用端口转发</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+在Windows操作系统中有时候需要更改初始服务端口才能够访问时（防火墙阻断正常端口访问），更改软件端口又比较麻烦时，可以使用Windows操作系统自带的端口转发软件，或者其它情况下需要做端口转发时则可以使用一下此方法实现。
+</p>
+
+<p>
+添加:
+</p>
+<pre class="example">
+netsh interface portproxy add v4tov4 listenport=转发端口 listenaddress=本机IP connectport=目标端口 connectaddress=目标IP
+</pre>
+
+<p>
+删除:
+</p>
+<pre class="example">
+netsh interface portproxy delete v4tov4 listenport=转发端口 listenaddress=本机IP
+</pre>
+
+
+<!-- more-forword -->
+
+
+<!-- more -->
+</div>
+</div>
+
+
+      
     </div>
-  
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            
+            <a href="/tag/#/Dos" rel="tag"># Dos</a>
+          
+        </div>
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/windows/2018/12/10/%E7%94%B1win10%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%9B%B4%E6%8D%A2%E8%87%B3win7%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="next" title="由Win10操作系统更换至Win7操作系统">
+                <i class="fa fa-chevron-left"></i> 由Win10操作系统更换至Win7操作系统
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/%E5%8D%95%E7%89%87%E6%9C%BA/2018/12/05/51%E5%8D%95%E7%89%87%E6%9C%BA/" rel="prev" title="51单片机">
+                51单片机 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
 </div>
 
 
@@ -358,6 +548,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -375,10 +569,30 @@
     <div class="sidebar-inner">
 
       
+        
+        
+        
+
+
+
+
+
+
 
       
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/assets/images/logo.png"
@@ -449,6 +663,34 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#sec-1"> <span class="nav-number">1</span> <span class="nav-text">1 使用端口转发</span> </a> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

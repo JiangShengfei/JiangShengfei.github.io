@@ -1,0 +1,43 @@
+#+BEGIN_HTML
+---
+layout: post
+title: 由Win10操作系统更换至Win7操作系统
+description: 更改主机默认的Win10系统至Win7系统
+excerpt: ""
+categories: Windows
+tags: [Dos]
+---
+#+END_HTML
+
+* 更改系统
+** 安装系统准备
+在安装Win7系统之前，需要备份Win10操作系统所在磁盘中的所有用户数据，系统重新安装之后原有数
+据都将丢失。首先需要准备备好一个安装U盘或者安装光盘，并提前准备好硬盘、USB及网卡等必要的驱
+动程序，在安装过程或安装后可能会使用到。
+** 安装Win7系统
+一切准备工作做好后，就可以进行Win7系统的安装了，更改默认的启动方式，选择U盘或者光驱进入
+Win7安装界面。
+
+然后按照如下的操作方法进行磁盘格式的更改，成功之后就可以顺利的进行Win7系统的安装了):
+
+: shift + F10
+: Diskpart
+: list disk  //列出当前计算机上的所有物理磁盘
+: select disk 1  //磁盘编号从0开始，这里选择了第二块磁盘
+: clean  //清除物理磁盘所有信息
+: convert mbr  //更改格式
+: exit
+: exit
+
+当做完上述操作之后就可以进行磁盘的分区，及系统的安装，如果找不到磁盘可以尝试加载磁盘驱动程
+序，后续的安装比较简单可以按照提示做即可。
+
+
+#+BEGIN_HTML
+<!-- more-forword -->
+#+END_HTML
+
+
+#+BEGIN_HTML
+<!-- more -->
+#+END_HTML

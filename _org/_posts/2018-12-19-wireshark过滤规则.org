@@ -1,0 +1,49 @@
+#+BEGIN_HTML
+---
+layout: post
+title: WireShark过滤规则
+description: WireShark常用过滤规则使用。
+excerpt: ""
+categories: Network
+tags: []
+---
+#+END_HTML
+
+* WireShark过滤规则
+** 过滤IP
+: ip.dst == 1.1.1.1
+: ip.src eq 192.168.120.184
+: ip.addr eq 192.168.120.184
+
+** 过滤MAC地址
+: eth.src == af:4f:3d:7f:2d:23
+: eth.dst eq 56:8d:2a:3e:2c:03
+: eth.addr eq 2e:0a:87:02:34:64
+
+** 过滤端口
+: tcp.port eq 22
+: tcp.dstport == 80
+: tcp.srcport eq 23
+: udp.port eq 3389
+: tcp.port >= 1 and tcp.port <= 1024
+
+** http模式过滤
+: http.host == "www.myhost.com"
+: http.request.method == "GET"
+: http.request.method == "POST"
+: http contains "test"
+
+** 包长度过滤
+: udp.length eq 26
+: tcp.len eq 94
+: frame.len == 119
+
+
+#+BEGIN_HTML
+<!-- more-forword -->
+#+END_HTML
+
+
+#+BEGIN_HTML
+<!-- more -->
+#+END_HTML

@@ -1,0 +1,311 @@
+---
+layout: post
+title: 51单片机
+description: 51单片机基础学习笔记。
+excerpt: ""
+categories: 单片机
+tags: [C]
+---
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> 单片机结构</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+一台计算机由一下几部分组成：CPU、RAM、ROM、I/O设备。在个人计算机这些部分在集成在多个芯片上，
+而在单片机中这些都被集成到一块芯片中，单片机是一种控制芯片，一个微型的计算机。
+</p>
+</div>
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> 单片机引脚</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+单片机的40个引脚大致可以分为4类：电源、时钟、控制、I/O引脚。
+</p>
+
+<p>
+1、电源
+</p>
+<pre class="example">
+VCC 芯片电源 +5V
+VSS 接地端
+</pre>
+<p>
+2、时钟
+</p>
+<pre class="example">
+XTAL1、XTAL2 晶体振荡电路反向输入端和输出端
+</pre>
+<p>
+3、控制线：控制线共有四根
+</p>
+<pre class="example">
+a、ALE/PROG:地址锁存允许/片内EPROM编程脉冲
+AEL功能：用来锁存P0口送出的低8位地址
+PROG功能：片内有EPROM的芯片，在EPROM编程期间，此引脚输入编程脉冲
+
+b、PSEN：外ROM读选通信号
+
+c、RST/VPD：复位/备用电源
+RST功能：复位信号输入端
+VPD功能：在VCC掉电情况下，使用备用电源
+
+d、EA/Vpp：内部ROM选择/片内EPROM编程电源
+EA功能：内外ROM选择端
+Vpp功能：片内有EPROM芯片，在EPROM编程期间，施加编程电源Vpp
+</pre>
+
+<p>
+4、I/O线
+</p>
+
+<p>
+80C51共有4个8位并行I/O端口：P0、P1、P2、P3口，共有32个引脚，P3还具有第二功能，用于特殊信号输入输出和控制信号（输入控制总线）。
+</p>
+
+<!-- more-forword -->
+
+
+<!-- more -->
+</div>
+</div>
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> 特殊功能寄存器</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+在单片机中有一些独立的存储单元用来控制定时器/计数器，串行I/O口等器件，被称为特殊功能寄存器
+（SFR）。特殊功能寄存器如下表：
+</p>
+<table>
+
+
+<colgroup>
+<col  class="left">
+
+<col  class="left">
+
+<col  class="left">
+</colgroup>
+<tbody>
+<tr>
+<td class="left">符号</td>
+<td class="left">地址</td>
+<td class="left">功能</td>
+</tr>
+
+<tr>
+<td class="left">B</td>
+<td class="left">F0H</td>
+<td class="left">B寄存器</td>
+</tr>
+
+<tr>
+<td class="left">ACC</td>
+<td class="left">E0H</td>
+<td class="left">累加器</td>
+</tr>
+
+<tr>
+<td class="left">PSW</td>
+<td class="left">D0H</td>
+<td class="left">程序状态字</td>
+</tr>
+
+<tr>
+<td class="left">IP</td>
+<td class="left">B8H</td>
+<td class="left">中断优先级控制寄存器</td>
+</tr>
+
+<tr>
+<td class="left">P3</td>
+<td class="left">B0H</td>
+<td class="left">P3口锁存器</td>
+</tr>
+
+<tr>
+<td class="left">IE</td>
+<td class="left">A8H</td>
+<td class="left">中断允许控制寄存器</td>
+</tr>
+
+<tr>
+<td class="left">P2</td>
+<td class="left">A0H</td>
+<td class="left">P2口锁存器</td>
+</tr>
+
+<tr>
+<td class="left">SBUF</td>
+<td class="left">99H</td>
+<td class="left">串行口锁存器</td>
+</tr>
+
+<tr>
+<td class="left">SCON</td>
+<td class="left">98H</td>
+<td class="left">串行口控制寄存器</td>
+</tr>
+
+<tr>
+<td class="left">P1</td>
+<td class="left">90H</td>
+<td class="left">P1口锁存器</td>
+</tr>
+
+<tr>
+<td class="left">TH1</td>
+<td class="left">8DH</td>
+<td class="left">定时器/计数器1（高8位）</td>
+</tr>
+
+<tr>
+<td class="left">TH0</td>
+<td class="left">8CH</td>
+<td class="left">定时器/计数器1（低8位）</td>
+</tr>
+
+<tr>
+<td class="left">TL1</td>
+<td class="left">8BH</td>
+<td class="left">定时器/计数器0（高8位）</td>
+</tr>
+
+<tr>
+<td class="left">TL0</td>
+<td class="left">8AH</td>
+<td class="left">定时器/计数器0（低8位）</td>
+</tr>
+
+<tr>
+<td class="left">TMOD</td>
+<td class="left">89A</td>
+<td class="left">定时器/计数器方式控制寄存器</td>
+</tr>
+
+<tr>
+<td class="left">TCON</td>
+<td class="left">88H</td>
+<td class="left">定时器/计数器控制寄存器</td>
+</tr>
+
+<tr>
+<td class="left">DPH</td>
+<td class="left">83H</td>
+<td class="left">数据地址指针（高8位）</td>
+</tr>
+
+<tr>
+<td class="left">DPL</td>
+<td class="left">82H</td>
+<td class="left">数据地址指针（低8位）</td>
+</tr>
+
+<tr>
+<td class="left">SP</td>
+<td class="left">81H</td>
+<td class="left">堆栈指针</td>
+</tr>
+
+<tr>
+<td class="left">P0</td>
+<td class="left">80H</td>
+<td class="left">P0口锁存器</td>
+</tr>
+
+<tr>
+<td class="left">PCON</td>
+<td class="left">87H</td>
+<td class="left">电源控制寄存器</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 单片机寻址方式与指令系统</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> 指令格式</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+在MCS-51指令中，一般指令主要由操作码、操作数组成。指令应该有如下功能：
+</p>
+<pre class="example">
+1、操作码指明执行什么性质和类型的操作
+2、操作数指明操作的数本身或者是操作数所在的地址
+3、指定操作结果存放的地址
+</pre>
+</div>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> 寻址方式</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+1、立即寻址
+</p>
+
+<p>
+操作数以指令形式出现，称作立即数，用#号的8位或者16位数来表示。
+</p>
+<pre class="example">
+MOV A, #60H    ;A &lt;- #60H
+MOV 30H, #40   ;30H单元 &lt;- #40H
+</pre>
+<p>
+以上命令执行完成之后，累加器A中数据为立即数据60H，30H单元中数据为立即数40H。
+</p>
+
+<p>
+2、直接寻址
+</p>
+
+<p>
+指令中直接给出操作数的8位地址，能进行直接寻址的存储空间有SFR和片内RAM。
+</p>
+<pre class="example">
+MOV PSW, #20H
+PSW直接地址为D0H，在指令中可使用其名称
+MOV A, 30H
+30为直接给出的内部RAM地址。
+</pre>
+
+<p>
+3、寄存器寻址
+</p>
+<pre class="example">
+INC DPTR    ;DPTR &lt;- DPTR+1
+ADD A, R2   ;A &lt;- A+R2
+</pre>
+
+<p>
+4、寄存器间接寻址
+</p>
+
+<p>
+以寄存器的内容为操作数的地址，在寄存器前加@用来区分。即以寄存器作为指针，可用来访问片内RAM
+和片外RAM，不能访问SFR。能作为间接寻址的寄存器有R0、R1、DPTR、SP，其中R0、R1是指所选中的工作寄存器，SP仅用于堆栈操作。
+</p>
+<pre class="example">
+MOV @R0, A
+访问片内RAM
+</pre>
+
+<p>
+5、变址寻址
+</p>
+
+<p>
+变址寻址只能对程序存储器中的数据进行读取访问，在指令符号上采用MOVC的形式。
+</p>
+
+<p>
+6、相对寻址
+</p>
+
+<p>
+相对寻址是为实现程序的相对转移而设计。
+</p>
+</div>
+</div>
+</div>

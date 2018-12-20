@@ -1,0 +1,31 @@
+#+BEGIN_HTML
+---
+layout: post
+title: Windows端口转发
+description: 在Win7中开启端口转发功能
+excerpt: ""
+categories: Windows
+tags: [Dos]
+---
+#+END_HTML
+
+* 使用端口转发
+在Windows操作系统中有时候需要更改初始服务端口才能够访问时（防火墙阻断正常端口访问），更改
+软件端口又比较麻烦时，可以使用Windows操作系统自带的端口转发软件，或者其它情况下需要做端口
+转发时则可以使用一下此方法实现。
+
+添加:
+: netsh interface portproxy add v4tov4 listenport=转发端口 listenaddress=本机IP connectport=目标端口 connectaddress=目标IP
+
+删除:
+: netsh interface portproxy delete v4tov4 listenport=转发端口 listenaddress=本机IP
+
+
+#+BEGIN_HTML
+<!-- more-forword -->
+#+END_HTML
+
+
+#+BEGIN_HTML
+<!-- more -->
+#+END_HTML

