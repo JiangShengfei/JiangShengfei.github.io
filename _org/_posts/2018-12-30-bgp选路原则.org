@@ -1,0 +1,116 @@
+#+BEGIN_HTML
+---
+layout: post
+title: BGP选路原则
+description: bgp选路原则。
+excerpt: ""
+categories: Network
+tags: []
+---
+#+END_HTML
+
+* BGP选路原则
+** 优选具有最大Weight值的路由
+1、cisco私有，越大越优先；
+
+2、本路由器有效，不会传递给任何BGP邻居；
+
+3、范围为0～65536；
+
+4、从其它邻居学习过来的路由，在本地weight默认为0；
+
+5、本地network产生的路由weight为32768；
+
+6、本地重分发的直连接口路由、静态路由weight值为32768；
+
+7、本地汇总产生的BGP的路由weight值为32768。
+
+** 选择具有最大Local-Preference的路由
+1、Local-Preference值越大，越优先；
+
+2、默认本地始发的路由的Local-Preference为100，从EBGP peer接受的路由（本地赋值）的
+Local-preference为100；
+
+3、Local-Preference属性仅在IBGP peer之间传递，不能在EBGP peer之间传递；
+
+** 优选起源于本地的路由
+起源于本地的路由，如本地network、aggregate、redistribute即下一跳地址为0.0.0.0的路由，在BGP
+路由表中本路由器通告的下一跳为0.0.0.0。
+
+该比较原则主要指本地一条IGP路由进入BGP路由表时，使用不同的方式如network或redistribute时，
+这些方式之间存在优先级: network>redistribute>aggregate，该原则并不会作为BGP的选路策略。
+
+** 优先as-path最短路由
+1、选择长度最小的as-path路由；
+
+2、其它as-apth比较: (1)、在做聚合路由时，使用as-set产生的as-apth列表的{}中的as号长度只算一
+个as号的长度。(2)、在联盟内的as-path列表()中的as号长度不做计算依据；
+
+3、当向EBGP peer邻居通告路由时，将自己的as号加在as-path列表的最左端，向IBGP peer通告路由时，
+不会对as-path列表做修改；
+
+4、针对EBGP peer可以修改as-path列表；
+
+5、可以配置跳过as-path长度的比较；
+
+6、修改as-path长度可以作为BGP选路的一种策略。
+
+** Origin
+Origin属性的优先顺序为：IGP > EGP > incomplete
+
+** MED
+1、优选MED最小的路由，值越小越优先；
+
+2、默认只比较来自同一邻居的as的BGP路由的MED值；
+
+3、MED在as之间交换，MED发送非EBGP对等体，这些路由器在as内传播MED，不能传递给下一个as；
+
+4、使用network或redistibute将IGP路由引入BGP时，MED将继承IGP路由的Metric（直连路由Metric=0）；
+
+5、使用aggregate-address方式引入路由，MED值为空；
+
+** 优选EBGP邻居更新的路由
+优选EBGP邻居发来的路由（相对于IBGP邻居学习的路由），在联邦EBGP和IBGP中优选联邦EBGP路由。当
+使用前六条原则仍然无法决定路由的优先顺序时，会根据EBGP路由优先于IBGP路由的原则进行优选，该
+原则不会作为BGP选路原则。
+
+** 优选BGP next-hop最近的邻居
+比较到达BGP路由路径属性中的next-hop地址的IGP Metric值，越小越优先，该值与MED没有任何关系，
+几乎很少使用该原则作为BGP选路原则。
+
+** 等价负载均衡
+如果有多条来自相同相邻as的路由并通过maximum-apths使多条路径可用，则将所有开销相同的路由放
+入本地路由表中。
+
+前面的8条选路路径都无法选出最优路由时，并且在BGP中配置了maximum-paths时，将进行等价负载均
+衡。(1)、必须具有相同的路径属性，如weight、LP、as-apth（长度及as号都要相同）(2)、如果不关
+联ibgp关键字，那么只会对EBGP路由做等价负载均衡
+
+** 优选最老的EBGP路由
+根据EBGP路由接收顺序，主要针对EBGP路由，优先使用最老的路由，在IBGP环境中，这条规则并不适用。
+
+** BGP邻居RID越小越优先
+1、router-id越小，越优先；
+
+2、上面几条选路原则已经完成了EBGP路由的优先选择，应此后三条都时针对于IBGP路由。
+
+** 优选cluster—list最短的路由
+1、长度越小，越优先；
+
+2、仅存在反射器的情况下，才会进行cluster-list长度的比较，RR在执行路由反射动作时会将自己的
+cluster id 添加值cluster-list中。
+
+** 选择邻居IP地址最小的路由
+1、邻居的ip地址越小，越优先。
+
+
+
+
+#+BEGIN_HTML
+<!-- more-forword -->
+#+END_HTML
+
+
+#+BEGIN_HTML
+<!-- more -->
+#+END_HTML

@@ -1,0 +1,470 @@
+---
+layout: post
+title: Linux防火墙
+description: Linux防火墙基本配置。
+excerpt: ""
+categories: Linux
+tags: [shell]
+---
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Linux防火墙</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+防火墙依据策略可以对经过防火墙的流量进行过滤。防火墙的策略可以基于源目的地址、端口号、协议、
+应用信息等来制定策略，通过匹配预先制定的规则对流量进行相应的处理。在早期的linux系统中使用
+iptables来作为定义防火墙策略的管理工具，而在新的系统中加入了firewalld。它们并不是真正的防火墙，iptables服务会将预先配置好的防火墙策略交由内核层面的netfilter网络过滤器来处理，而
+firewalld服务会将配置好的防火墙策略交由内核层面的nftables包过滤框架来处理。
+</p>
+</div>
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> iptables</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+iptables是早期linux中默认使用的防火墙配置管理服务，目前依然后很多系统中仍然使用iptables。
+</p>
+</div>
+<div id="outline-container-sec-1-1-1" class="outline-4">
+<h4 id="sec-1-1-1"><span class="section-number-4">1.1.1</span> 规则</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<p>
+规则是系统管理员定义的条件，规则分别指定了源目标地址、传输协议(tcp,udp,icmp)及服务类型
+(http,ftp,ssh)等，当数据包与规则相匹配时，就根据所定义的方法来处理这些数据包，如accept、
+reject、drop。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-1-2" class="outline-4">
+<h4 id="sec-1-1-2"><span class="section-number-4">1.1.2</span> 链</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<p>
+多条规则可以形成一个链。
+</p>
+
+<p>
+五链：
+</p>
+<ol class="org-ol">
+<li>INPUT链：进来的数据包应用此规则链中的策略
+</li>
+<li>OUTPUT链：出去的数据包应用此规则链中的策略
+</li>
+<li>FORWARD链：转发数据包应用此规则链中的策略
+</li>
+<li>PREROUTING链：在对数据包做路由选择之前应用此规则链中的策略
+</li>
+<li>POSTROUTING链：在对数据包做路由选择之后应用此规则链中的策略
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-sec-1-1-3" class="outline-4">
+<h4 id="sec-1-1-3"><span class="section-number-4">1.1.3</span> 表</h4>
+<div class="outline-text-4" id="text-1-1-3">
+<p>
+表提供了特定的功能，用于实现包过滤、网络地址转换及包重构功能，表中的规则写在链上面。
+</p>
+
+<p>
+四表：
+</p>
+<ol class="org-ol">
+<li>filter表：数据包过滤
+</li>
+<li>Nat表：网络地址转换（IP、port）
+</li>
+<li>Mangle表：修改数据包的服务类型、ttl，可以配置路由实现qos
+</li>
+<li>Raw表：决定数据包是否被状态跟踪机制处理
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-1-1-4" class="outline-4">
+<h4 id="sec-1-1-4"><span class="section-number-4">1.1.4</span> iptables常用参数及作用</h4>
+<div class="outline-text-4" id="text-1-1-4">
+<table>
+
+
+<colgroup>
+<col  class="left">
+
+<col  class="left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">参数</th>
+<th scope="col" class="left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">-F</td>
+<td class="left">清空规则链</td>
+</tr>
+
+<tr>
+<td class="left">-L</td>
+<td class="left">查看规则链</td>
+</tr>
+
+<tr>
+<td class="left">-A</td>
+<td class="left">在规则链的末尾加入新规则</td>
+</tr>
+
+<tr>
+<td class="left">-I num</td>
+<td class="left">在规则链的头部加入新规则</td>
+</tr>
+
+<tr>
+<td class="left">-D num</td>
+<td class="left">删除某一条规则</td>
+</tr>
+
+<tr>
+<td class="left">-s</td>
+<td class="left">匹配来源地址IP/MASK，加叹号“!”表示除这个IP外</td>
+</tr>
+
+<tr>
+<td class="left">-d</td>
+<td class="left">匹配目标地址</td>
+</tr>
+
+<tr>
+<td class="left">-i 网卡名称</td>
+<td class="left">匹配从这块网卡流入的数据</td>
+</tr>
+
+<tr>
+<td class="left">-o 网卡名称</td>
+<td class="left">匹配从这块网卡流出的数据</td>
+</tr>
+
+<tr>
+<td class="left">-p</td>
+<td class="left">匹配协议，如TCP、UDP、ICMP</td>
+</tr>
+
+<tr>
+<td class="left">&#x2013;dport num</td>
+<td class="left">匹配目标端口号</td>
+</tr>
+
+<tr>
+<td class="left">&#x2013;sport num</td>
+<td class="left">匹配来源端口号</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-sec-1-1-5" class="outline-4">
+<h4 id="sec-1-1-5"><span class="section-number-4">1.1.5</span> iptables命令示例：</h4>
+<div class="outline-text-4" id="text-1-1-5">
+<p>
+1、清空防火墙规则链及查看
+</p>
+<pre class="example">
+iptables -F
+iptables -L
+</pre>
+<p>
+2、设置转发规则链默认策略为拒绝
+</p>
+<pre class="example">
+iptables -P FORWARD DROP
+</pre>
+<p>
+3、INPUT链中添加ICMP流量进入的策略规则
+</p>
+<pre class="example">
+iptables -A INPUT -p icmp -j ACCEPT
+</pre>
+<p>
+4、INPUT链中添加允许指定网段主机访问本机ssh服务，并拒绝其它主机访问ssh服务
+</p>
+<pre class="example">
+iptables -I INPUT -s 192.168.1.0/24 -p tcp --dport 22 -j ACCEPT
+iptables -I INPUT -p tcp --dport 22 -j REJECT
+</pre>
+<p>
+5、删除INPUT链中的某条规则
+</p>
+<pre class="example">
+iptables -D INPUT 1
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> firewalld</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+firewalld支持动态更新并加入了区域概念。
+</p>
+</div>
+
+<div id="outline-container-sec-1-2-1" class="outline-4">
+<h4 id="sec-1-2-1"><span class="section-number-4">1.2.1</span> firewalld常用区域名及策略规则</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<table>
+
+
+<colgroup>
+<col  class="left">
+
+<col  class="left">
+</colgroup>
+<tbody>
+<tr>
+<td class="left">区域</td>
+<td class="left">默认规则策略</td>
+</tr>
+
+<tr>
+<td class="left">trusted</td>
+<td class="left">允许所有数据包</td>
+</tr>
+
+<tr>
+<td class="left">home</td>
+<td class="left">拒绝流入的流量，如果流量与ssh、mdns、ipp-client、amba-client与dhcpv6-client服务相关，则允许流量</td>
+</tr>
+
+<tr>
+<td class="left">internal</td>
+<td class="left">等同于home区域</td>
+</tr>
+
+<tr>
+<td class="left">work</td>
+<td class="left">拒绝流入的流量如果流量与ssh、mdns、ipp-client、amba-client与dhcpv6-client服务相关，则允许流量</td>
+</tr>
+
+<tr>
+<td class="left">public</td>
+<td class="left">拒绝流入的流量，而如果流量与ssh、dhcpv6-client服务相关，则允许流量</td>
+</tr>
+
+<tr>
+<td class="left">external</td>
+<td class="left">拒绝流入的流量，而如果流量与ssh服务相关，则允许流量</td>
+</tr>
+
+<tr>
+<td class="left">dmz</td>
+<td class="left">拒绝流入的流量，而如果流量与ssh服务相关，则允许流量</td>
+</tr>
+
+<tr>
+<td class="left">block</td>
+<td class="left">拒绝流入的流量</td>
+</tr>
+
+<tr>
+<td class="left">drop</td>
+<td class="left">拒绝流入的流量</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2-2" class="outline-4">
+<h4 id="sec-1-2-2"><span class="section-number-4">1.2.2</span> firewalld-cmd命令常用参数及作用</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<table>
+
+
+<colgroup>
+<col  class="left">
+
+<col  class="left">
+</colgroup>
+<tbody>
+<tr>
+<td class="left">参数</td>
+<td class="left">作用</td>
+</tr>
+
+<tr>
+<td class="left">&#x2013;get-default-zone</td>
+<td class="left">查询默认的区域名称</td>
+</tr>
+
+<tr>
+<td class="left">&#x2013;set-default-zone=&lt;区域名称&gt;</td>
+<td class="left">设置默认的区域，使其永久生效</td>
+</tr>
+
+<tr>
+<td class="left">&#x2013;get-zones</td>
+<td class="left">显示可用的区域</td>
+</tr>
+
+<tr>
+<td class="left">&#x2013;get-services</td>
+<td class="left">显示预先定义的服务</td>
+</tr>
+
+<tr>
+<td class="left">&#x2013;get-active-zones</td>
+<td class="left">显示当前正在使用的区域与网卡名称</td>
+</tr>
+
+<tr>
+<td class="left">&#x2013;add-source=</td>
+<td class="left">将源自此IP或子网的流量导向指定的区域</td>
+</tr>
+
+<tr>
+<td class="left">&#x2013;remove-source=</td>
+<td class="left">不再将源自此IP或子网的流量导向某个指定区域</td>
+</tr>
+
+<tr>
+<td class="left">&#x2013;add-interface=&lt;网卡名称&gt;</td>
+<td class="left">将源自该网卡的所有流量都导向某个指定区域</td>
+</tr>
+
+<tr>
+<td class="left">&#x2013;change-interface=&lt;网卡名称&gt;</td>
+<td class="left">将某个网卡与区域进行关联</td>
+</tr>
+
+<tr>
+<td class="left">&#x2013;list-all</td>
+<td class="left">显示当前区域的网卡配置参数、资源、端口以及服务等信息</td>
+</tr>
+
+<tr>
+<td class="left">&#x2013;list-all-zones</td>
+<td class="left">显示所有区域的网卡配置参数、资源、端口以及服务等信息</td>
+</tr>
+
+<tr>
+<td class="left">&#x2013;add-service=&lt;服务名&gt;</td>
+<td class="left">设置默认区域允许该服务的流量</td>
+</tr>
+
+<tr>
+<td class="left">&#x2013;add-port=&lt;端口号/协议&gt;</td>
+<td class="left">设置默认区域允许该端口的流量</td>
+</tr>
+
+<tr>
+<td class="left">&#x2013;remove-service=&lt;服务名&gt;</td>
+<td class="left">设置默认区域不再允许该服务的流量</td>
+</tr>
+
+<tr>
+<td class="left">&#x2013;remove-port=&lt;端口号/协议&gt;</td>
+<td class="left">设置默认区域不再允许该端口的流量</td>
+</tr>
+
+<tr>
+<td class="left">&#x2013;reload</td>
+<td class="left">让“永久生效”的配置规则立即生效，并覆盖当前的配置规则</td>
+</tr>
+
+<tr>
+<td class="left">&#x2013;panic-on</td>
+<td class="left">开启应急状况模式</td>
+</tr>
+
+<tr>
+<td class="left">&#x2013;panic-off</td>
+<td class="left">关闭应急状况模式</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2-3" class="outline-4">
+<h4 id="sec-1-2-3"><span class="section-number-4">1.2.3</span> firewalld-cmd命令示例</h4>
+<div class="outline-text-4" id="text-1-2-3">
+<p>
+1、查看运行状态
+</p>
+<pre class="example">
+firewall-cmd --state
+</pre>
+<p>
+2、查看已激活的Zone信息
+</p>
+<pre class="example">
+firewall-cmd --get-active-zones
+</pre>
+<p>
+3、查看指定接口的zone信息
+</p>
+<pre class="example">
+firewall-cmd --get-zone-of-interface=eth0
+</pre>
+<p>
+4、查看指定级别的接口
+</p>
+<pre class="example">
+firewall-cmd --zone=public --list-interfaces
+</pre>
+<p>
+5、查看指定级别的所有信息
+</p>
+<pre class="example">
+firewall-cmd --zone=public --list-all
+</pre>
+<p>
+6、查看所有级别中被允许的服务
+</p>
+<pre class="example">
+friewall-cmd --get-service
+</pre>
+<p>
+7、添加smtp服务至work zone
+</p>
+<pre class="example">
+firewall-cmd --zone=work --add-service=smtp
+</pre>
+<p>
+8、从work zone中移除smtp服务
+</p>
+<pre class="example">
+firewall-cmd --zone=work --remove-service=smtp
+</pre>
+<p>
+9、允许tcp端口8000至dmz级别
+</p>
+<pre class="example">
+firewall-cmd --zone=dmz --add-port=8000/tcp
+firewall-cmd --reload
+</pre>
+<p>
+10、允许范围内udp端口至public级别，设置永久生效
+</p>
+<pre class="example">
+firewall-cmd --zone=public --add-port=8000-9000/udp --permanent
+</pre>
+<p>
+11、设置public为默认的信任级别
+</p>
+<pre class="example">
+firewall-cmd --set-default-zone=public
+</pre>
+
+
+
+
+<!-- more-forword -->
+
+
+<!-- more -->
+</div>
+</div>
+</div>
+</div>

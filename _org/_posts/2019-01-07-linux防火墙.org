@@ -1,0 +1,143 @@
+#+BEGIN_HTML
+---
+layout: post
+title: Linux防火墙
+description: Linux防火墙基本配置。
+excerpt: ""
+categories: Linux
+tags: [shell]
+---
+#+END_HTML
+
+* Linux防火墙
+防火墙依据策略可以对经过防火墙的流量进行过滤。防火墙的策略可以基于源目的地址、端口号、协议、
+应用信息等来制定策略，通过匹配预先制定的规则对流量进行相应的处理。在早期的linux系统中使用
+iptables来作为定义防火墙策略的管理工具，而在新的系统中加入了firewalld。它们并不是真正的防
+火墙，iptables服务会将预先配置好的防火墙策略交由内核层面的netfilter网络过滤器来处理，而
+firewalld服务会将配置好的防火墙策略交由内核层面的nftables包过滤框架来处理。
+** iptables
+iptables是早期linux中默认使用的防火墙配置管理服务，目前依然后很多系统中仍然使用iptables。
+*** 规则
+规则是系统管理员定义的条件，规则分别指定了源目标地址、传输协议(tcp,udp,icmp)及服务类型
+(http,ftp,ssh)等，当数据包与规则相匹配时，就根据所定义的方法来处理这些数据包，如accept、
+reject、drop。
+
+*** 链
+多条规则可以形成一个链。
+
+五链：
+1. INPUT链：进来的数据包应用此规则链中的策略
+2. OUTPUT链：出去的数据包应用此规则链中的策略
+3. FORWARD链：转发数据包应用此规则链中的策略
+4. PREROUTING链：在对数据包做路由选择之前应用此规则链中的策略
+5. POSTROUTING链：在对数据包做路由选择之后应用此规则链中的策略
+*** 表
+表提供了特定的功能，用于实现包过滤、网络地址转换及包重构功能，表中的规则写在链上面。
+
+四表：
+1. filter表：数据包过滤
+2. Nat表：网络地址转换（IP、port）
+3. Mangle表：修改数据包的服务类型、ttl，可以配置路由实现qos
+4. Raw表：决定数据包是否被状态跟踪机制处理
+
+*** iptables常用参数及作用
+| 参数 | 作用 |
+|-P | 设置默认策略 |
+| -F | 清空规则链 |
+| -L | 查看规则链 |
+| -A | 在规则链的末尾加入新规则 |
+| -I num | 在规则链的头部加入新规则 |
+| -D num | 删除某一条规则 |
+| -s | 匹配来源地址IP/MASK，加叹号“!”表示除这个IP外 |
+| -d | 匹配目标地址 |
+| -i 网卡名称 | 匹配从这块网卡流入的数据 |
+| -o 网卡名称 | 匹配从这块网卡流出的数据 |
+| -p | 匹配协议，如TCP、UDP、ICMP |
+| --dport num | 匹配目标端口号 |
+| --sport num | 匹配来源端口号 |
+*** iptables命令示例：
+1、清空防火墙规则链及查看
+: iptables -F
+: iptables -L
+2、设置转发规则链默认策略为拒绝
+: iptables -P FORWARD DROP
+3、INPUT链中添加ICMP流量进入的策略规则
+: iptables -A INPUT -p icmp -j ACCEPT
+4、INPUT链中添加允许指定网段主机访问本机ssh服务，并拒绝其它主机访问ssh服务
+: iptables -I INPUT -s 192.168.1.0/24 -p tcp --dport 22 -j ACCEPT
+: iptables -I INPUT -p tcp --dport 22 -j REJECT
+5、删除INPUT链中的某条规则
+: iptables -D INPUT 1
+** firewalld
+firewalld支持动态更新并加入了区域概念。
+
+*** firewalld常用区域名及策略规则
+
+| 区域    | 默认规则策略   |
+| trusted | 允许所有数据包 |
+| home    | 拒绝流入的流量，如果流量与ssh、mdns、ipp-client、amba-client与dhcpv6-client服务相关，则允许流量 |
+| internal | 等同于home区域 |
+| work    | 拒绝流入的流量如果流量与ssh、mdns、ipp-client、amba-client与dhcpv6-client服务相关，则允许流量 |
+| public | 拒绝流入的流量，而如果流量与ssh、dhcpv6-client服务相关，则允许流量 |
+| external | 拒绝流入的流量，而如果流量与ssh服务相关，则允许流量 |
+| dmz	| 拒绝流入的流量，而如果流量与ssh服务相关，则允许流量 |
+| block | 拒绝流入的流量 |
+| drop | 拒绝流入的流量 |
+
+*** firewalld-cmd命令常用参数及作用
+| 参数 | 作用 |
+| --get-default-zone | 查询默认的区域名称 |
+| --set-default-zone=<区域名称> | 设置默认的区域，使其永久生效 |
+| --get-zones | 显示可用的区域 |
+| --get-services | 显示预先定义的服务 |
+| --get-active-zones | 显示当前正在使用的区域与网卡名称 |
+| --add-source=	| 将源自此IP或子网的流量导向指定的区域 |
+| --remove-source= | 不再将源自此IP或子网的流量导向某个指定区域 |
+| --add-interface=<网卡名称> | 将源自该网卡的所有流量都导向某个指定区域 |
+| --change-interface=<网卡名称> | 将某个网卡与区域进行关联 |
+| --list-all | 显示当前区域的网卡配置参数、资源、端口以及服务等信息 |
+| --list-all-zones | 显示所有区域的网卡配置参数、资源、端口以及服务等信息 |
+| --add-service=<服务名> | 设置默认区域允许该服务的流量 |
+| --add-port=<端口号/协议> | 设置默认区域允许该端口的流量 |
+| --remove-service=<服务名> | 设置默认区域不再允许该服务的流量 |
+| --remove-port=<端口号/协议> | 设置默认区域不再允许该端口的流量 |
+| --reload | 让“永久生效”的配置规则立即生效，并覆盖当前的配置规则 |
+| --panic-on | 开启应急状况模式 |
+| --panic-off | 关闭应急状况模式 |
+
+*** firewalld-cmd命令示例
+1、查看运行状态
+: firewall-cmd --state
+2、查看已激活的Zone信息
+: firewall-cmd --get-active-zones
+3、查看指定接口的zone信息
+: firewall-cmd --get-zone-of-interface=eth0
+4、查看指定级别的接口
+: firewall-cmd --zone=public --list-interfaces
+5、查看指定级别的所有信息
+: firewall-cmd --zone=public --list-all
+6、查看所有级别中被允许的服务
+: friewall-cmd --get-service
+7、添加smtp服务至work zone
+: firewall-cmd --zone=work --add-service=smtp
+8、从work zone中移除smtp服务
+: firewall-cmd --zone=work --remove-service=smtp
+9、允许tcp端口8000至dmz级别
+: firewall-cmd --zone=dmz --add-port=8000/tcp
+: firewall-cmd --reload
+10、允许范围内udp端口至public级别，设置永久生效
+: firewall-cmd --zone=public --add-port=8000-9000/udp --permanent
+11、设置public为默认的信任级别
+: firewall-cmd --set-default-zone=public
+
+
+
+
+#+BEGIN_HTML
+<!-- more-forword -->
+#+END_HTML
+
+
+#+BEGIN_HTML
+<!-- more -->
+#+END_HTML
